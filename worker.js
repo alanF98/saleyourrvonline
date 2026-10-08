@@ -130,13 +130,15 @@ footer a:hover{color:var(--acc)}
         <div class="g"><label>Year*<input name="year" inputmode="numeric" required></label><label>Make*<input name="make" required></label></div>
         <div class="g"><label>Model*<input name="model" required></label><label>Mileage<input name="mi" inputmode="numeric"></label></div>
         <label>Comments / Questions<textarea name="c" rows="2"></textarea></label>
-        <label>Upload photo<input type="file" accept="image/*"></label>
+        <label>Upload photo<input name="photo" type="file" accept="image/*"></label>
+        <div aria-hidden="true" style="position:absolute;left:-9999px"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
         <div class="row"><button type="button" class="btn" data-next>Next →</button></div>
       </div>
       <div class="step" data-s="1">
-        <div class="g"><label>Name*<input name="name" required></label><label>Phone*<input name="tel" type="tel" required></label></div>
-        <div class="g"><label>Email*<input name="email" type="email" required></label><label>ZIP / Postal code*<input name="zip" required></label></div>
-        <div class="row"><button type="button" class="btn ghost" data-prev>← Back</button><button class="btn" type="submit">Submit</button></div>
+        <div class="g"><label>Name*<input name="name" autocomplete="name" required></label><label>Phone*<input name="tel" type="tel" autocomplete="tel" required></label></div>
+        <div class="g"><label>Email*<input name="email" type="email" autocomplete="email" required></label><label>ZIP / Postal code*<input name="zip" autocomplete="postal-code" required></label></div>
+        <p id="err" role="alert" style="color:#c0392b;display:none;margin:0 0 10px"></p>
+        <div class="row"><button type="button" class="btn ghost" data-prev>← Back</button><button class="btn" type="submit" id="sub">Submit</button></div>
       </div>
     </form>
     <div class="done" id="done"><svg viewBox="0 0 64 64"><path d="M14 34l12 12 24-26"/></svg><h2>Thank <em>you.</em></h2><p>A real person will contact you shortly.</p></div>
@@ -187,14 +189,137 @@ function go(n){st.forEach(function(s,i){s.classList.toggle('on',i==n)});dots.for
 function ok(s){var good=true;s.querySelectorAll('[required]').forEach(function(i){var v=i.value.trim()&&i.checkValidity();i.style.borderColor=v?'':'#c0392b';if(!v)good=false});return good}
 f.querySelector('[data-next]').onclick=function(){if(ok(st[0]))go(1)};
 f.querySelector('[data-prev]').onclick=function(){go(0)};
-f.onsubmit=function(e){e.preventDefault();if(!ok(st[1]))return;/* TODO: connect to your form handler */f.style.display='none';document.querySelector('.dots').style.display='none';document.getElementById('done').classList.add('on')};
+f.onsubmit=function(e){e.preventDefault();if(!ok(st[1]))return;var b=document.getElementById('sub'),er=document.getElementById('err');b.disabled=true;er.style.display='none';
+fetch('/api/lead',{method:'POST',body:new FormData(f)}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok)throw new Error(j.error||'Something went wrong');})}).then(function(){f.style.display='none';document.querySelector('.dots').style.display='none';document.getElementById('done').classList.add('on')}).catch(function(x){b.disabled=false;er.textContent=x.message+'. Please try again or call 800-863-1848.';er.style.display='block'})};
 </script>
 </body>
 </html>
 `;
 
+const MAX_PHOTO = 8 * 1024 * 1024;
+const STATUSES = ['new', 'contacted', 'offer', 'closed'];
+
+const json = (data, status = 200) =>
+  new Response(JSON.stringify(data), { status, headers: { 'content-type': 'application/json' } });
+
+const clean = (v, max) => String(v ?? '').trim().slice(0, max);
+
+async function authorized(request, env) {
+  if (!env.API_TOKEN) return false;
+  const given = (request.headers.get('authorization') || '').replace(/^Bearer\s+/i, '');
+  const enc = new TextEncoder();
+  const [a, b] = await Promise.all([
+    crypto.subtle.digest('SHA-256', enc.encode(given)),
+    crypto.subtle.digest('SHA-256', enc.encode(env.API_TOKEN)),
+  ]);
+  const x = new Uint8Array(a), y = new Uint8Array(b);
+  let diff = 0;
+  for (let i = 0; i < x.length; i++) diff |= x[i] ^ y[i];
+  return diff === 0;
+}
+
+async function createLead(request, env, ctx) {
+  let form;
+  try { form = await request.formData(); } catch { return json({ error: 'Invalid form data' }, 400); }
+
+  // Honeypot: bots fill the hidden field; pretend success.
+  if (clean(form.get('website'), 100)) return json({ ok: true });
+
+  const lead = {
+    year: clean(form.get('year'), 10),
+    make: clean(form.get('make'), 60),
+    model: clean(form.get('model'), 80),
+    mileage: clean(form.get('mi'), 20),
+    comments: clean(form.get('c'), 2000),
+    name: clean(form.get('name'), 100),
+    phone: clean(form.get('tel'), 30),
+    email: clean(form.get('email'), 120),
+    zip: clean(form.get('zip'), 12),
+  };
+  const missing = ['year', 'make', 'model', 'name', 'phone', 'email', 'zip'].filter((k) => !lead[k]);
+  if (missing.length) return json({ error: 'Missing required fields' }, 400);
+  if (!/^\S+@\S+\.\S+$/.test(lead.email)) return json({ error: 'Invalid email' }, 400);
+
+  const id = crypto.randomUUID();
+  let photoKeys = [];
+  const photo = form.get('photo');
+  if (photo && typeof photo === 'object' && photo.size > 0) {
+    if (!photo.type.startsWith('image/')) return json({ error: 'Photo must be an image' }, 400);
+    if (photo.size > MAX_PHOTO) return json({ error: 'Photo is too large (max 8 MB)' }, 400);
+    const key = `leads/${id}/photo-1`;
+    await env.PHOTOS.put(key, photo.stream(), { httpMetadata: { contentType: photo.type } });
+    photoKeys = [key];
+  }
+
+  const createdAt = new Date().toISOString();
+  await env.DB.prepare(
+    `INSERT INTO leads (id, created_at, status, year, make, model, mileage, comments, name, phone, email, zip, photo_keys)
+     VALUES (?, ?, 'new', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+  ).bind(id, createdAt, lead.year, lead.make, lead.model, lead.mileage, lead.comments,
+         lead.name, lead.phone, lead.email, lead.zip, JSON.stringify(photoKeys)).run();
+
+  // Optional push to another service (e.g. the other Cloudflare site). The lead is already saved.
+  if (env.WEBHOOK_URL) {
+    const payload = { id, created_at: createdAt, status: 'new', ...lead, photo_keys: photoKeys };
+    ctx.waitUntil(
+      fetch(env.WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', authorization: `Bearer ${env.WEBHOOK_SECRET || ''}` },
+        body: JSON.stringify(payload),
+      }).catch(() => {})
+    );
+  }
+  return json({ ok: true, id }, 201);
+}
+
+async function listLeads(url, env) {
+  const status = url.searchParams.get('status');
+  const before = url.searchParams.get('before');
+  const limit = Math.min(Math.max(parseInt(url.searchParams.get('limit') || '50', 10) || 50, 1), 200);
+  const where = [], args = [];
+  if (status && STATUSES.includes(status)) { where.push('status = ?'); args.push(status); }
+  if (before) { where.push('created_at < ?'); args.push(before); }
+  const sql = `SELECT * FROM leads ${where.length ? 'WHERE ' + where.join(' AND ') : ''} ORDER BY created_at DESC LIMIT ?`;
+  const { results } = await env.DB.prepare(sql).bind(...args, limit).all();
+  return json({ leads: results.map((r) => ({ ...r, photo_keys: JSON.parse(r.photo_keys || '[]') })) });
+}
+
+async function api(request, env, ctx, url) {
+  const { pathname } = url;
+  if (pathname === '/api/lead' && request.method === 'POST') return createLead(request, env, ctx);
+
+  if (!(await authorized(request, env))) return json({ error: 'Unauthorized' }, 401);
+
+  if (pathname === '/api/leads' && request.method === 'GET') return listLeads(url, env);
+
+  const lead = pathname.match(/^\/api\/leads\/([\w-]+)$/);
+  if (lead && request.method === 'GET') {
+    const r = await env.DB.prepare('SELECT * FROM leads WHERE id = ?').bind(lead[1]).first();
+    return r ? json({ ...r, photo_keys: JSON.parse(r.photo_keys || '[]') }) : json({ error: 'Not found' }, 404);
+  }
+  if (lead && request.method === 'PATCH') {
+    const body = await request.json().catch(() => ({}));
+    if (!STATUSES.includes(body.status)) return json({ error: 'Invalid status' }, 400);
+    const r = await env.DB.prepare('UPDATE leads SET status = ? WHERE id = ?').bind(body.status, lead[1]).run();
+    return r.meta.changes ? json({ ok: true }) : json({ error: 'Not found' }, 404);
+  }
+
+  const photo = pathname.match(/^\/api\/photos\/(leads\/[\w-]+\/photo-\d+)$/);
+  if (photo && request.method === 'GET') {
+    const obj = await env.PHOTOS.get(photo[1]);
+    if (!obj) return json({ error: 'Not found' }, 404);
+    return new Response(obj.body, { headers: { 'content-type': obj.httpMetadata?.contentType || 'application/octet-stream' } });
+  }
+  return json({ error: 'Not found' }, 404);
+}
+
 export default {
-  async fetch() {
+  async fetch(request, env, ctx) {
+    const url = new URL(request.url);
+    if (url.pathname.startsWith('/api/')) {
+      try { return await api(request, env, ctx, url); }
+      catch (e) { console.error(e); return json({ error: 'Server error' }, 500); }
+    }
     return new Response(html, { headers: { 'content-type': 'text/html;charset=UTF-8' } });
   },
 };
