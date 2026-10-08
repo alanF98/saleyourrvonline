@@ -1,5 +1,17 @@
 {
   "name": "saleyourrvonline",
   "main": "worker.js",
-  "compatibility_date": "2026-10-01"
+  "compatibility_date": "2026-10-01",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "rv-leads",
+      "database_id": "REPLACE_WITH_ID_FROM_wrangler_d1_create",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    { "binding": "PHOTOS", "bucket_name": "rv-lead-photos" }
+  ]
+  // Secrets (set with `wrangler secret put`): API_TOKEN, and optionally WEBHOOK_URL + WEBHOOK_SECRET
 }
