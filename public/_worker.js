@@ -226,6 +226,8 @@ header .btn.ghost{color:var(--heroink);border-color:rgba(242,235,224,.3)}
 input,select{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:15px}
 input:focus,select:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 22%,transparent)}
 #login .btn{width:100%;margin-top:12px;padding:14px}
+.rem{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:14px;color:var(--mut);cursor:pointer}
+.rem input{width:auto;margin:0;accent-color:var(--acc)}
 .err{color:#c0392b;font-size:14px;margin-top:10px;min-height:20px}
 #app{display:none}
 .bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:28px 0 18px}
@@ -257,8 +259,9 @@ input:focus,select:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3
 
 <div id="login">
   <h1>Leads <em>admin</em></h1>
-  <p>Enter your access token to view the leads. It is kept only for this browser session.</p>
+  <p>Enter your access token to view the leads. Tick the box below to stay signed in on this device.</p>
   <form id="lf"><input id="tok" type="password" placeholder="Access token" autocomplete="current-password" required>
+  <label class="rem"><input type="checkbox" id="rem"> Remember me on this device</label>
   <button class="btn" type="submit" id="lb">Sign in</button>
   <div class="err" id="le" role="alert"></div></form>
 </div>
@@ -275,12 +278,12 @@ input:focus,select:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3
 var STATUSES=['new','contacted','offer','closed'];
 var LABEL={all:'All','new':'New',contacted:'Contacted',offer:'Offer',closed:'Closed'};
 var token='',filter='all',leads=[],lastBefore=null;
-try{token=sessionStorage.getItem('rvtoken')||''}catch(e){}
+try{token=localStorage.getItem('rvtoken')||sessionStorage.getItem('rvtoken')||''}catch(e){}
 var $=function(id){return document.getElementById(id)};
 function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e}
 function api(path,opts){opts=opts||{};opts.headers=Object.assign({authorization:'Bearer '+token},opts.headers||{});return fetch(path,opts)}
 function showApp(on){$('login').style.display=on?'none':'block';$('app').style.display=on?'block':'none';$('out').style.display=on?'inline-flex':'none'}
-function signOut(){token='';try{sessionStorage.removeItem('rvtoken')}catch(e){}leads=[];showApp(false);$('tok').value=''}
+function signOut(){token='';try{sessionStorage.removeItem('rvtoken');localStorage.removeItem('rvtoken')}catch(e){}leads=[];showApp(false);$('tok').value=''}
 
 function buildTabs(){var t=$('tabs');t.innerHTML='';['all'].concat(STATUSES).forEach(function(s){var b=el('button','tab'+(s===filter?' on':''),LABEL[s]);b.onclick=function(){filter=s;buildTabs();load(true)};t.appendChild(b)})}
 
@@ -350,7 +353,7 @@ function setStatus(l,s,sel){
 
 $('lf').onsubmit=function(e){
   e.preventDefault();token=$('tok').value.trim();$('le').textContent='';$('lb').disabled=true;
-  load(true).then(function(){try{sessionStorage.setItem('rvtoken',token)}catch(x){}showApp(true)}).catch(function(x){if(x.message!=='401')$('le').textContent='Something went wrong. Try again.'}).then(function(){$('lb').disabled=false});
+  load(true).then(function(){try{var keep=$('rem').checked;sessionStorage.removeItem('rvtoken');localStorage.removeItem('rvtoken');(keep?localStorage:sessionStorage).setItem('rvtoken',token)}catch(x){}showApp(true)}).catch(function(x){if(x.message!=='401')$('le').textContent='Something went wrong. Try again.'}).then(function(){$('lb').disabled=false});
 };
 $('out').onclick=signOut;
 $('rf').onclick=function(){load(true)};
