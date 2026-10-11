@@ -129,7 +129,7 @@ footer a:hover{color:var(--acc)}
 </head>
 <body>
 <nav id="nav" aria-label="Main navigation">
-  <a class="nlogo" href="#top" aria-label="Sell My RV Online home"><img src="/logo.png" alt="Sell My RV Online" width="66" height="40"></a>
+  <a class="nlogo" href="#top" aria-label="Sell My RV Online home"><img src="/logo-wide.png" alt="Sell My RV Online" width="218" height="40"></a>
   <ul class="nlinks">
     <li><a href="#top">Sell Your RV</a></li>
     <li><a href="#how">How It Works</a></li>
