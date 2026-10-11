@@ -318,6 +318,9 @@ export default {
       try { return await api(request, env, ctx, url); }
       catch (e) { console.error(e); return json({ error: 'Server error' }, 500); }
     }
-    return new Response(html, { headers: { 'content-type': 'text/html;charset=UTF-8' } });
+    if (url.pathname === '/') {
+      return new Response(html, { headers: { 'content-type': 'text/html;charset=UTF-8' } });
+    }
+    return env.ASSETS.fetch(request);
   },
 };

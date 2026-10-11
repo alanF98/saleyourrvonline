@@ -1,19 +1,16 @@
 {
   "name": "saleyourrvonline",
-  "main": "worker.js",
+  "pages_build_output_dir": "./public",
   "compatibility_date": "2026-10-01",
-  // Static files in ./public (hero photo) are served directly; everything else goes to the Worker.
-  "assets": { "directory": "./public" },
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "rv-leads",
-      "database_id": "66bc930d-1306-48df-a365-8c5c33f821ff",
-      "migrations_dir": "migrations"
+      "database_id": "66bc930d-1306-48df-a365-8c5c33f821ff"
     }
   ],
   "r2_buckets": [
     { "binding": "PHOTOS", "bucket_name": "rv-lead-photos" }
   ]
-  // Secrets (set with `wrangler secret put`): API_TOKEN, and optionally WEBHOOK_URL + WEBHOOK_SECRET
+  // Secrets (Pages > Settings > Variables and Secrets): API_TOKEN, and optionally WEBHOOK_URL + WEBHOOK_SECRET
 }
