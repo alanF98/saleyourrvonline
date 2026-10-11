@@ -32,7 +32,7 @@ nav ul a{position:relative;padding:4px 0;color:var(--herom);transition:color .2s
 nav ul a:hover{color:var(--heroink)}
 nav .btn{padding:10px 18px;font-size:14px;background:transparent;color:var(--heroink);border-color:var(--heroacc)}
 nav .btn:hover{background:var(--heroacc);color:var(--hero)}
-.hero{background:var(--hero);color:var(--heroink);padding:88px 0 112px;position:relative;overflow:hidden}
+.hero{background:var(--hero);color:var(--heroink);padding:88px 0 48px;position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,var(--heroacc),transparent 65%);opacity:.14;left:-240px;top:-300px;pointer-events:none}
 .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:72px;align-items:center;position:relative}
 .hero .eyebrow,.hero em{color:var(--heroacc)}
@@ -58,7 +58,9 @@ input:focus,textarea:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0
 .done{text-align:center;padding:30px 0;display:none}.done.on{display:block;animation:slide .6s}
 .done svg{width:64px;height:64px;stroke:var(--acc);fill:none;stroke-width:3;stroke-dasharray:60;animation:draw 1s .2s both}
 @keyframes draw{from{stroke-dashoffset:60}}
-.trust{border-bottom:1px solid var(--line)}
+.showcase{margin:-1px 0 -28px;background:linear-gradient(to bottom,var(--hero) 0,var(--hero) 20%,var(--bg) 85%,var(--bg) 100%);overflow:hidden}
+.showcase img{display:block;width:100%;max-width:1440px;margin:0 auto;height:clamp(300px,46vw,620px);object-fit:cover;object-position:62% 78%;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 26%,#000 84%,transparent 100%),linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to bottom,transparent 0,#000 26%,#000 84%,transparent 100%),linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%);mask-composite:intersect}
+.trust{position:relative;z-index:1;border-bottom:1px solid var(--line)}
 .trust .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
 .trust .wrap>div{padding:28px 24px;border-left:1px solid var(--line);font-size:14px;color:var(--mut)}
 .trust .wrap>div:first-child{border-left:0;padding-left:0}
@@ -86,7 +88,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
 footer a:hover{color:var(--acc)}
 .js .r{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .9s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
 .js .r.in{opacity:1;transform:none}
-@media (max-width:900px){.hero .wrap,.cmp,.steps{grid-template-columns:1fr}nav ul{display:none}section{padding:80px 0}.hero{padding:56px 0 80px}.hero .wrap{gap:48px}.steps{gap:40px}.trust .wrap{grid-template-columns:1fr 1fr}.trust .wrap>div:nth-child(odd){border-left:0;padding-left:0}.trust .wrap>div:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:900px){.showcase{margin-bottom:-16px}.showcase img{object-position:72% 60%}.hero .wrap,.cmp,.steps{grid-template-columns:1fr}nav ul{display:none}section{padding:80px 0}.hero{padding:56px 0 24px}.hero .wrap{gap:48px}.steps{gap:40px}.trust .wrap{grid-template-columns:1fr 1fr}.trust .wrap>div:nth-child(odd){border-left:0;padding-left:0}.trust .wrap>div:nth-child(n+3){border-top:1px solid var(--line)}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .r{opacity:1;transform:none}}
 </style>
 </head>
@@ -134,6 +136,8 @@ footer a:hover{color:var(--acc)}
     <div class="done" id="done"><svg viewBox="0 0 64 64"><path d="M14 34l12 12 24-26"/></svg><h2>Thank <em>you.</em></h2><p>A real person will contact you shortly.</p></div>
   </div>
 </div></header>
+
+<figure class="showcase r"><picture><source srcset="/hero.webp" type="image/webp"><img src="/hero.jpg" width="1376" height="768" alt="A luxury motorcoach parked in the desert at sunset" decoding="async"></picture></figure>
 
 <div class="trust"><div class="wrap">
   <div class="r"><b>Free pickup</b>Nationwide, at no cost to you</div>
