@@ -554,6 +554,165 @@ async function api(request, env, ctx, url) {
   return json({ error: 'Not found' }, 404);
 }
 
+// ---------- Secondary pages (FAQ, About, Privacy, Sitemap): content copied from the original site ----------
+const SUB_CSS = `<style>
+.phead{background:var(--hero);color:var(--heroink);padding:150px 0 72px;position:relative;overflow:hidden}
+.phead::before{content:"";position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,var(--heroacc),transparent 65%);opacity:.14;left:-220px;top:-300px;pointer-events:none}
+.phead .wrap{position:relative}
+.phead .eyebrow{color:var(--heroacc)}
+.phead h1{font-size:clamp(40px,5.5vw,68px);margin:16px 0 0}
+.phead p{color:var(--herom);max-width:560px;margin:18px 0 0;font-size:18px}
+.doc{padding:72px 0 110px}
+.doc .wrap{max-width:820px}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:26px 0;font:400 24px/1.25 Fraunces,Georgia,serif;letter-spacing:-.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:none;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font:400 22px/1 Inter,sans-serif;color:var(--acc);transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq summary:focus-visible{outline:2px solid var(--acc);outline-offset:4px;border-radius:8px}
+.faq .ans{padding:0 56px 28px 0;color:var(--mut);margin:0}
+.about{display:grid;grid-template-columns:1.35fr 1fr;gap:56px;align-items:start}
+.about .txt p{margin:0;color:var(--mut);font-size:18px}
+.infocard{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:30px}
+.infocard small{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);font-weight:600;margin-bottom:6px}
+.infocard h3{font-size:26px;margin:0 0 22px}
+.infocard h3 a:hover{color:var(--acc)}
+.infocard .row2{padding-top:18px;margin-top:18px;border-top:1px solid var(--line);color:var(--mut)}
+.infocard .row2 b{display:block;color:var(--ink);font-weight:600}
+.where{margin-top:64px}
+.where h2{font-size:clamp(30px,4vw,44px);margin-bottom:8px}
+.where p{margin:0 0 22px;color:var(--mut)}
+.map{border-radius:24px;overflow:hidden;border:1px solid var(--line);background:var(--bg2)}
+.map iframe{display:block;width:100%;height:380px;border:0}
+.legal h3{font-size:28px;margin:46px 0 12px}
+.legal h3:first-child{margin-top:0}
+.legal p,.legal li{color:var(--mut);margin:0 0 14px}
+.legal strong{color:var(--ink);font-weight:600}
+.legal ul{padding-left:22px;margin:0 0 14px}
+.legal a{color:var(--acc);text-decoration:underline;text-underline-offset:3px}
+.smap h2{font-size:30px;margin-bottom:18px}
+.smap ul{list-style:none;margin:0;padding:0}
+.smap li{border-top:1px solid var(--line)}
+.smap li:last-child{border-bottom:1px solid var(--line)}
+.smap a{display:flex;justify-content:space-between;align-items:center;padding:18px 0;font-size:18px;transition:color .2s,padding .3s}
+.smap a::after{content:"→";color:var(--acc)}
+.smap a:hover{color:var(--acc);padding-left:8px}
+@media (max-width:900px){.about{grid-template-columns:1fr;gap:32px}.phead{padding:118px 0 56px}.doc{padding:48px 0 80px}.faq summary{font-size:20px}.faq .ans{padding-right:0}.map iframe{height:300px}}
+</style>`;
+
+const SUB_SCRIPT = `<script>
+(function(){
+var nav=document.getElementById('nav');addEventListener('scroll',function(){nav.classList.toggle('s',scrollY>10)},{passive:true});
+var hb=document.getElementById('hb'),mm=document.getElementById('mm');
+function setMenu(o){hb.classList.toggle('open',o);hb.setAttribute('aria-expanded',o);hb.setAttribute('aria-label',o?'Close menu':'Open menu');mm.classList.toggle('open',o);mm.setAttribute('aria-hidden',!o);document.body.style.overflow=o?'hidden':''}
+hb.onclick=function(){setMenu(!hb.classList.contains('open'))};
+[].forEach.call(mm.querySelectorAll('a'),function(a){a.addEventListener('click',function(){setMenu(false)})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&mm.classList.contains('open')){setMenu(false);hb.focus()}});
+addEventListener('resize',function(){if(innerWidth>980&&mm.classList.contains('open'))setMenu(false)});
+})();
+</script>`;
+
+function subpage(o) {
+  const head = html.slice(0, html.indexOf('</head>'))
+    .replace(/<title>[^<]*<\/title>/, '<title>' + o.title + ' | Sell My RV Online</title>\n<meta name="description" content="' + o.desc + '">');
+  const nav = html.slice(html.indexOf('<nav id="nav"'), html.indexOf('<header class="hero"'))
+    .replace(/href="#top"/g, 'href="/"').replace(/href="#how"/g, 'href="/#how"')
+    .replace(/href="#contact"/g, 'href="/#contact"').replace(/href="#offer"/g, 'href="/#offer"')
+    .replace('<li><a href="/faq/">', o.active ? '<li><a class="on" href="/faq/">' : '<li><a href="/faq/">');
+  const footer = html.slice(html.indexOf('<footer>'), html.indexOf('</footer>') + 9);
+  return head + SUB_CSS + '\n</head>\n<body>\n' + nav +
+    '<header class="phead"><div class="wrap"><span class="eyebrow">' + o.eyebrow + '</span><h1>' + o.h1 + '</h1>' + (o.lead ? '<p>' + o.lead + '</p>' : '') + '</div></header>\n' +
+    '<main class="doc"><div class="wrap">' + o.body + '</div></main>\n' + footer + '\n' + SUB_SCRIPT + '\n</body>\n</html>\n';
+}
+
+const FAQS = [
+  ['How do you establish the value for my RV?', 'We have over 25 years of experience and a network of RV professionals nationwide that help keep us informed of the current market conditions and allow us to make very competitive offers.'],
+  ['What items should I leave in my RV when selling to you?', 'Please leave ALL factory items like bedspreads, decorative pillows, furniture, and remotes. Please remove all personal items from the interior and outside bays. Please do not leave any perishable items in the refrigerator.'],
+  ['My RV has been damaged, will you still purchase it?', 'Yes, we will adjust the value according to the estimated repair costs. Please disclose any damage when first contacting us for a value.'],
+  ['What documents do I need to provide?', 'We will need a copy of the title or registration if you have a loan, last loan statement, copies of any trust or LLC documents if applicable, copy of your driver’s license, bank account number and routing number (can be provided after physical inspection).'],
+  ['What documents do you provide?', 'We provide a bill of sale with the mutually agreed upon price. If you have a loan, we will provide the necessary documents to make the payoff for you and obtain a paper title from the DMV.'],
+  ['What forms of payments do you suggest?', 'We ONLY use a federal wire transfer so once the funds are in your account they cannot be reversed.'],
+  ['When can I cancel my insurance?', 'As soon as funds arrive in your account, and we take physical possession of the RV please cancel your insurance you will no longer have any liability.'],
+  ['I have an extended warranty, is it of any value?', 'In most cases we recommend contacting the warranty company to see if they offer a pro-rated refund to you directly.'],
+  ['Why should I sell to Sell My RV Online vs selling myself?', 'No hassle sale. No potential for fraud.'],
+  ['Why should I trust Sell My RV Online?', 'We have been in the RV business for over 25 years and have perfected the consumer purchase. You will retain physical possession and title until satisfied with funding.'],
+  ['I live in a very rural area. How will you arrange to pick up my RV?', 'We have a network of representatives throughout US that are highly experienced in finding their way to the most remote areas.'],
+];
+
+const PRIVACY_EMAIL = 'buchananam21@gmail.com';
+const PRIVACY_HTML = `
+<h3>Introduction</h3>
+<p>This Privacy Policy describes how Sell My RV Online collects, uses, and shares your personal information when you visit our website.</p>
+<h3>Information We Collect</h3>
+<p>We collect the following types of personal information from you:</p>
+<p><strong>Contact information: </strong>This includes your name, email address, and phone number.</p>
+<p><strong>Usage information:</strong> This includes information about how you use our website, such as the pages you visit and the links you click.</p>
+<p><strong>Technical information: </strong>This includes information about your computer hardware and software, such as your IP address, browser type, and operating system.</p>
+<p><strong>Cookie information:</strong> We use cookies on our website to remember your preferences, track your browsing activity, and target advertising to you based on your interests. You can choose to disable cookies on your computer by changing your browser settings. However, disabling cookies may prevent you from using some features of our website.</p>
+<h3>How We Use Your Information</h3>
+<p>We use your personal information for the following purposes:</p>
+<p><strong>To provide you with the services you request:</strong> This includes providing you with access to our website and our content.</p>
+<p><strong>To improve our website and services:</strong> We use your usage information to improve our website and services, such as by personalizing your experience and identifying areas where we can improve.</p>
+<p><strong>To send you marketing communications:</strong> We may use your contact information to send you marketing communications about our products and services. You can opt out of receiving marketing communications at any time by clicking on the “unsubscribe” link in any marketing email.</p>
+<p><strong>To comply with the law:</strong> We may use your personal information to comply with applicable laws and regulations.</p>
+<h3>Sharing Your Information</h3>
+<p>We may share your personal information with third parties in the following circumstances:</p>
+<p><strong>With our service providers:</strong> We may share your personal information with our service providers who help us operate our website and provide our services. These service providers are bound by contractual obligations to keep your personal information confidential and to use it only for the purposes for which it was provided.</p>
+<p><strong>With law enforcement:</strong> We may share your personal information with law enforcement if we are required to do so by law or if we believe that sharing the information is necessary to prevent or investigate a crime.</p>
+<h3>Your Rights</h3>
+<p>You have the following rights with respect to your personal information:</p>
+<p><strong>The right to access your personal information:</strong> You have the right to request a copy of your personal information that we hold.</p>
+<p><strong>The right to correct your personal information:</strong> You have the right to correct any inaccurate or incomplete personal information that we hold about you.</p>
+<p><strong>The right to delete your personal information:</strong> You have the right to request that we delete your personal information.</p>
+<p><strong>The right to object to the processing of your personal information:</strong> You have the right to object to the processing of your personal information, for example, if you believe that the processing is not necessary for the purposes for which it was collected.</p>
+<p><strong>The right to opt out of the sale of your personal information:</strong> If you are a resident of California, you have the right to opt out of the sale of your personal information.</p>
+<h3>How to Exercise Your Rights</h3>
+<p>To exercise your rights, please contact us at <a href="mailto:${PRIVACY_EMAIL}">${PRIVACY_EMAIL}</a>.</p>
+<h3>Security</h3>
+<p>We take the security of your personal information very seriously. We use a variety of security measures to protect your personal information from unauthorized access, use, disclosure, alteration, or destruction.</p>
+<h3>Changes to This Privacy Policy</h3>
+<p>We may update this Privacy Policy from time to time. If we make any significant changes to the way we collect, use, or share your personal information, we will notify you by email or through a prominent notice on our website.</p>
+<h3>Contact Information</h3>
+<p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:${PRIVACY_EMAIL}">${PRIVACY_EMAIL}</a>.</p>
+<h3>CCPA and VCDPA Compliance</h3>
+<p>We comply with the California Consumer Privacy Act (CCPA) and the Virginia Consumer Data Protection Act (VCDPA). These laws give you certain rights with respect to your personal information, including the right to:</p>
+<ul>
+<li>Request access to your personal information.</li>
+<li>Request that we delete your personal information.</li>
+<li>Opt out of the sale of your personal information.</li>
+<li>To exercise your rights, please contact us at <a href="mailto:${PRIVACY_EMAIL}">${PRIVACY_EMAIL}</a>.</li>
+</ul>`;
+
+const ABOUT_ADDRESS = '2432 W. Peoria Ave. Ste. 1074 Phoenix, AZ 85029';
+const SITEMAP_LINKS = [
+  ['/', 'Sell Your RV – Home Page'], ['/#how', 'How It Works'], ['/faq/', 'FAQs'], ['/about-us/', 'About Us'],
+  ['/#contact', 'Contact Us'], ['/privacy-policy/', 'Privacy Policy'], ['/sitemap/', 'Sitemap'],
+];
+
+const PAGES = {
+  '/faq': subpage({
+    title: 'FAQs', desc: 'Answers to common questions about selling your RV to Sell My RV Online: valuation, documents, payment, insurance and pickup.',
+    eyebrow: 'FAQs', h1: 'Frequently Asked <em>Questions</em>', active: true,
+    body: '<div class="faq">' + FAQS.map(function (f) { return '<details><summary>' + f[0] + '</summary><p class="ans">' + f[1] + '</p></details>'; }).join('') + '</div>',
+  }),
+  '/about-us': subpage({
+    title: 'About Us', desc: 'Sell My RV Online is committed to a hassle-free selling process for pre-owned luxury coaches at the best prices. Located in Phoenix, Arizona.',
+    eyebrow: 'About us', h1: 'About <em>Us</em>',
+    body: '<div class="about"><div class="txt"><p>Sell My RV Online is committed to providing our customers a hassle-free selling process of their pre-owned luxury coaches at the best prices. Located in Phoenix, Arizona, our sales side of the business offers a variety of Prevost bus conversions and top-end diesel fiberglass RVs. We strive to offer customers a wide variety of RVs to not only fill the dreams of the customer but to suit their budget as well. Customer service before, during, and after the sale is our number one priority.</p></div>' +
+      '<aside class="infocard"><small>Call us</small><h3><a href="tel:800-863-1848">800-863-1848</a></h3><div class="row2"><b>Business Hours</b>By appointment only</div></aside></div>' +
+      '<section class="where"><h2>We are located in <em>Phoenix, AZ</em></h2><p>' + ABOUT_ADDRESS + '</p><div class="map"><iframe loading="lazy" title="' + ABOUT_ADDRESS + '" src="https://maps.google.com/maps?q=' + encodeURIComponent(ABOUT_ADDRESS) + '&amp;t=m&amp;z=9&amp;output=embed&amp;iwloc=near" referrerpolicy="no-referrer-when-downgrade"></iframe></div></section>',
+  }),
+  '/privacy-policy': subpage({
+    title: 'Privacy Policy', desc: 'How Sell My RV Online collects, uses and shares your personal information, and how to exercise your privacy rights.',
+    eyebrow: 'Legal', h1: 'Privacy <em>Policy</em>', body: '<div class="legal">' + PRIVACY_HTML + '</div>',
+  }),
+  '/sitemap': subpage({
+    title: 'Sitemap', desc: 'All pages of Sell My RV Online.', eyebrow: 'Sitemap', h1: '<em>Sitemap</em>',
+    body: '<section class="smap"><h2>Pages</h2><ul>' + SITEMAP_LINKS.map(function (l) { return '<li><a href="' + l[0] + '">' + l[1] + '</a></li>'; }).join('') + '</ul></section>',
+  }),
+};
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -565,6 +724,10 @@ export default {
       return new Response(adminHtml, {
         headers: { 'content-type': 'text/html;charset=UTF-8', 'x-robots-tag': 'noindex, nofollow', 'cache-control': 'no-store' },
       });
+    }
+    const key = url.pathname.length > 1 ? url.pathname.replace(/\/+$/, '') : url.pathname;
+    if (PAGES[key]) {
+      return new Response(PAGES[key], { headers: { 'content-type': 'text/html;charset=UTF-8' } });
     }
     if (url.pathname === '/') {
       return new Response(html, { headers: { 'content-type': 'text/html;charset=UTF-8' } });
