@@ -27,7 +27,7 @@ a{color:inherit;text-decoration:none}
 nav{position:fixed;top:14px;left:50%;z-index:50;width:min(calc(100% - 2rem),1180px);transform:translateX(-50%);display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:.45rem .45rem .45rem 1rem;border-radius:999px;background:rgba(246,241,234,.88);-webkit-backdrop-filter:blur(22px) saturate(1.3);backdrop-filter:blur(22px) saturate(1.3);box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),inset 0 1px 0 rgba(255,255,255,.8),0 10px 40px -18px rgba(40,22,6,.45);transition:background .4s}
 nav.s{background:rgba(246,241,234,.95)}
 .nlogo{display:flex;align-items:center;flex-shrink:0}
-.nlogo img{display:block;height:32px;width:auto}
+.nlogo img{display:block;height:26px;width:auto}
 .nlinks{display:flex;align-items:center;gap:.15rem;list-style:none;margin:0;padding:0}
 .nlinks a{display:block;white-space:nowrap;font-size:.8rem;font-weight:500;color:#6C5847;padding:.55rem .95rem;border-radius:999px;transition:color .3s,background .3s}
 .nlinks a:hover{color:#1B120A}
@@ -123,14 +123,14 @@ footer a:hover{color:var(--acc)}
 .js .r.in{opacity:1;transform:none}
 @media (max-width:900px){.brands .track{--ls:.72}.mlogo{margin:0 1.5rem}.showcase{margin-bottom:-16px}.showcase img{object-position:72% 60%}.hero .wrap,.cmp,.steps{grid-template-columns:1fr}nav ul{display:none}section{padding:80px 0}.hero{padding:112px 0 24px}.hero .wrap{gap:48px}.steps{gap:40px}.trust .wrap{grid-template-columns:1fr 1fr}.trust .wrap>div:nth-child(odd){border-left:0;padding-left:0}.trust .wrap>div:nth-child(n+3){border-top:1px solid var(--line)}}
 @media (max-width:1060px){.nphone{display:none}}
-@media (max-width:980px){nav{padding-left:.8rem}.nlinks,.nphone,.nbtn{display:none}.hb{display:block}.nlogo img{height:28px}}
+@media (max-width:980px){nav{padding-left:.8rem}.nlinks,.nphone,.nbtn{display:none}.hb{display:block}.nlogo img{height:23px}}
 @media (min-width:981px){#mm{display:none}}
 @media (prefers-reduced-motion:reduce){.brands .track{width:auto;flex-wrap:wrap;justify-content:center}.brands .track>*:nth-child(n+13){display:none}.mq{-webkit-mask-image:none;mask-image:none}*,*::before,*::after{animation:none!important;transition:none!important}.js .r{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 <nav id="nav" aria-label="Main navigation">
-  <a class="nlogo" href="#top" aria-label="Sell My RV Online home"><img src="/logo-wide.png" alt="Sell My RV Online" width="262" height="32"></a>
+  <a class="nlogo" href="#top" aria-label="Sell My RV Online home"><img src="/logo-wide.png" alt="Sell My RV Online" width="213" height="26"></a>
   <ul class="nlinks">
     <li><a href="#top">Sell Your RV</a></li>
     <li><a href="#how">How It Works</a></li>
