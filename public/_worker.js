@@ -27,7 +27,7 @@ a{color:inherit;text-decoration:none}
 nav{position:fixed;top:14px;left:50%;z-index:50;width:min(calc(100% - 2rem),1180px);transform:translateX(-50%);display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:.45rem .45rem .45rem 1rem;border-radius:999px;background:rgba(246,241,234,.88);-webkit-backdrop-filter:blur(22px) saturate(1.3);backdrop-filter:blur(22px) saturate(1.3);box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),inset 0 1px 0 rgba(255,255,255,.8),0 10px 40px -18px rgba(40,22,6,.45);transition:background .4s}
 nav.s{background:rgba(246,241,234,.95)}
 .nlogo{display:flex;align-items:center;flex-shrink:0}
-.nlogo img{display:block;height:70px;width:auto}
+.nlogo img{display:block;height:54px;width:auto}
 .nlinks{display:flex;align-items:center;gap:.15rem;list-style:none;margin:0;padding:0}
 .nlinks a{display:block;font-size:.8rem;font-weight:500;color:#6C5847;padding:.55rem .95rem;border-radius:999px;transition:color .3s,background .3s}
 .nlinks a:hover{color:#1B120A}
@@ -46,7 +46,7 @@ nav.s{background:rgba(246,241,234,.95)}
 .hb span:nth-child(2){transform:translate(-50%,4px)}
 .hb.open span:nth-child(1){transform:translate(-50%,0) rotate(45deg)}
 .hb.open span:nth-child(2){transform:translate(-50%,0) rotate(-45deg)}
-#mm{position:fixed;inset:0;z-index:40;display:flex;flex-direction:column;gap:1.1rem;padding:8rem 1.5rem calc(2rem + env(safe-area-inset-bottom,0px));overflow-y:auto;overscroll-behavior:contain;background:#F6F3EE;color:#1B120A;opacity:0;visibility:hidden;transition:opacity .5s cubic-bezier(.32,.72,0,1),visibility 0s linear .5s}
+#mm{position:fixed;inset:0;z-index:40;display:flex;flex-direction:column;gap:1.1rem;padding:7rem 1.5rem calc(2rem + env(safe-area-inset-bottom,0px));overflow-y:auto;overscroll-behavior:contain;background:#F6F3EE;color:#1B120A;opacity:0;visibility:hidden;transition:opacity .5s cubic-bezier(.32,.72,0,1),visibility 0s linear .5s}
 #mm.open{opacity:1;visibility:visible;transition:opacity .5s cubic-bezier(.32,.72,0,1),visibility 0s}
 .mlinks{list-style:none;margin:0;padding:0}
 .mlinks a{display:flex;align-items:baseline;gap:1rem;padding:1.05rem 0;border-bottom:1px solid rgba(100,62,18,.14);font:400 2rem/1.1 Fraunces,Georgia,serif;letter-spacing:-.02em}
@@ -56,7 +56,7 @@ nav.s{background:rgba(246,241,234,.95)}
 .mdock .mcta{background:#D09A5A;color:#14110e}
 .mdock .mcall{background:rgba(244,235,221,.08);color:#F4EBDD}
 .mdock .mcall small{display:block;font-weight:400;font-size:.76rem;opacity:.7}
-.hero{background:var(--hero);color:var(--heroink);padding:166px 0 48px;position:relative;overflow:hidden}
+.hero{background:var(--hero);color:var(--heroink);padding:148px 0 48px;position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,var(--heroacc),transparent 65%);opacity:.14;left:-240px;top:-300px;pointer-events:none}
 .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:72px;align-items:center;position:relative}
 .hero .eyebrow,.hero em{color:var(--heroacc)}
@@ -121,7 +121,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
 footer a:hover{color:var(--acc)}
 .js .r{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .9s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
 .js .r.in{opacity:1;transform:none}
-@media (max-width:900px){nav{padding-left:.8rem}.nlinks,.nphone,.nbtn{display:none}.hb{display:block}.nlogo img{height:56px}.brands .track{--ls:.72}.mlogo{margin:0 1.5rem}.showcase{margin-bottom:-16px}.showcase img{object-position:72% 60%}.hero .wrap,.cmp,.steps{grid-template-columns:1fr}nav ul{display:none}section{padding:80px 0}.hero{padding:126px 0 24px}.hero .wrap{gap:48px}.steps{gap:40px}.trust .wrap{grid-template-columns:1fr 1fr}.trust .wrap>div:nth-child(odd){border-left:0;padding-left:0}.trust .wrap>div:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:900px){nav{padding-left:.8rem}.nlinks,.nphone,.nbtn{display:none}.hb{display:block}.nlogo img{height:44px}.brands .track{--ls:.72}.mlogo{margin:0 1.5rem}.showcase{margin-bottom:-16px}.showcase img{object-position:72% 60%}.hero .wrap,.cmp,.steps{grid-template-columns:1fr}nav ul{display:none}section{padding:80px 0}.hero{padding:112px 0 24px}.hero .wrap{gap:48px}.steps{gap:40px}.trust .wrap{grid-template-columns:1fr 1fr}.trust .wrap>div:nth-child(odd){border-left:0;padding-left:0}.trust .wrap>div:nth-child(n+3){border-top:1px solid var(--line)}}
 @media (max-width:1060px){.nphone{display:none}}
 @media (min-width:901px){#mm{display:none}}
 @media (prefers-reduced-motion:reduce){.brands .track{width:auto;flex-wrap:wrap;justify-content:center}.brands .track>*:nth-child(n+13){display:none}.mq{-webkit-mask-image:none;mask-image:none}*,*::before,*::after{animation:none!important;transition:none!important}.js .r{opacity:1;transform:none}}
@@ -129,7 +129,7 @@ footer a:hover{color:var(--acc)}
 </head>
 <body>
 <nav id="nav" aria-label="Main navigation">
-  <a class="nlogo" href="#top" aria-label="Sell My RV Online home"><img src="/logo.png" alt="Sell My RV Online" width="116" height="70"></a>
+  <a class="nlogo" href="#top" aria-label="Sell My RV Online home"><img src="/logo.png" alt="Sell My RV Online" width="90" height="54"></a>
   <ul class="nlinks">
     <li><a href="#top">Sell Your RV</a></li>
     <li><a href="#how">How It Works</a></li>
