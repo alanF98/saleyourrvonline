@@ -27,9 +27,9 @@ a{color:inherit;text-decoration:none}
 nav{position:fixed;top:14px;left:50%;z-index:50;width:min(calc(100% - 2rem),1180px);transform:translateX(-50%);display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:.45rem .45rem .45rem 1rem;border-radius:999px;background:rgba(246,241,234,.88);-webkit-backdrop-filter:blur(22px) saturate(1.3);backdrop-filter:blur(22px) saturate(1.3);box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),inset 0 1px 0 rgba(255,255,255,.8),0 10px 40px -18px rgba(40,22,6,.45);transition:background .4s}
 nav.s{background:rgba(246,241,234,.95)}
 .nlogo{display:flex;align-items:center;flex-shrink:0}
-.nlogo img{display:block;height:40px;width:auto}
+.nlogo img{display:block;height:32px;width:auto}
 .nlinks{display:flex;align-items:center;gap:.15rem;list-style:none;margin:0;padding:0}
-.nlinks a{display:block;font-size:.8rem;font-weight:500;color:#6C5847;padding:.55rem .95rem;border-radius:999px;transition:color .3s,background .3s}
+.nlinks a{display:block;white-space:nowrap;font-size:.8rem;font-weight:500;color:#6C5847;padding:.55rem .95rem;border-radius:999px;transition:color .3s,background .3s}
 .nlinks a:hover{color:#1B120A}
 .nlinks a.on{color:#1B120A;background:rgba(107,70,30,.09)}
 .nright{display:flex;align-items:center;gap:.9rem}
@@ -121,15 +121,16 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
 footer a:hover{color:var(--acc)}
 .js .r{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .9s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
 .js .r.in{opacity:1;transform:none}
-@media (max-width:900px){nav{padding-left:.8rem}.nlinks,.nphone,.nbtn{display:none}.hb{display:block}.nlogo img{height:34px}.brands .track{--ls:.72}.mlogo{margin:0 1.5rem}.showcase{margin-bottom:-16px}.showcase img{object-position:72% 60%}.hero .wrap,.cmp,.steps{grid-template-columns:1fr}nav ul{display:none}section{padding:80px 0}.hero{padding:112px 0 24px}.hero .wrap{gap:48px}.steps{gap:40px}.trust .wrap{grid-template-columns:1fr 1fr}.trust .wrap>div:nth-child(odd){border-left:0;padding-left:0}.trust .wrap>div:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:900px){.brands .track{--ls:.72}.mlogo{margin:0 1.5rem}.showcase{margin-bottom:-16px}.showcase img{object-position:72% 60%}.hero .wrap,.cmp,.steps{grid-template-columns:1fr}nav ul{display:none}section{padding:80px 0}.hero{padding:112px 0 24px}.hero .wrap{gap:48px}.steps{gap:40px}.trust .wrap{grid-template-columns:1fr 1fr}.trust .wrap>div:nth-child(odd){border-left:0;padding-left:0}.trust .wrap>div:nth-child(n+3){border-top:1px solid var(--line)}}
 @media (max-width:1060px){.nphone{display:none}}
-@media (min-width:901px){#mm{display:none}}
+@media (max-width:980px){nav{padding-left:.8rem}.nlinks,.nphone,.nbtn{display:none}.hb{display:block}.nlogo img{height:28px}}
+@media (min-width:981px){#mm{display:none}}
 @media (prefers-reduced-motion:reduce){.brands .track{width:auto;flex-wrap:wrap;justify-content:center}.brands .track>*:nth-child(n+13){display:none}.mq{-webkit-mask-image:none;mask-image:none}*,*::before,*::after{animation:none!important;transition:none!important}.js .r{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 <nav id="nav" aria-label="Main navigation">
-  <a class="nlogo" href="#top" aria-label="Sell My RV Online home"><img src="/logo-wide.png" alt="Sell My RV Online" width="218" height="40"></a>
+  <a class="nlogo" href="#top" aria-label="Sell My RV Online home"><img src="/logo-wide.png" alt="Sell My RV Online" width="262" height="32"></a>
   <ul class="nlinks">
     <li><a href="#top">Sell Your RV</a></li>
     <li><a href="#how">How It Works</a></li>
@@ -249,7 +250,7 @@ function setMenu(o){hb.classList.toggle('open',o);hb.setAttribute('aria-expanded
 hb.onclick=function(){setMenu(!hb.classList.contains('open'))};
 [].forEach.call(mm.querySelectorAll('a'),function(a){a.addEventListener('click',function(){setMenu(false)})});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&mm.classList.contains('open')){setMenu(false);hb.focus()}});
-addEventListener('resize',function(){if(innerWidth>900&&mm.classList.contains('open'))setMenu(false)});
+addEventListener('resize',function(){if(innerWidth>980&&mm.classList.contains('open'))setMenu(false)});
 var nl=[].slice.call(document.querySelectorAll('.nlinks a[href^="#"]'));
 var spy=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){nl.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id)})}})},{rootMargin:'-45% 0px -50% 0px'});
 nl.forEach(function(l){var t=document.querySelector(l.getAttribute('href'));if(t)spy.observe(t)});
