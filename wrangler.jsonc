@@ -2,6 +2,8 @@
   "name": "saleyourrvonline",
   "main": "worker.js",
   "compatibility_date": "2026-10-01",
+  // Static files in ./public (hero photo) are served directly; everything else goes to the Worker.
+  "assets": { "directory": "./public" },
   "d1_databases": [
     {
       "binding": "DB",
