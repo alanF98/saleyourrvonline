@@ -24,15 +24,39 @@ a{color:inherit;text-decoration:none}
 .btn:hover{transform:translateY(-2px)}
 .btn:disabled{opacity:.6;cursor:wait;transform:none}
 .btn.ghost{background:transparent;color:var(--ink)}
-nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--hero) 88%,transparent);backdrop-filter:blur(14px);color:var(--heroink);border-bottom:1px solid var(--heroline)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
-.logo{font-family:Fraunces,Georgia,serif;font-size:20px;font-weight:600}.logo em{font-weight:400;color:var(--heroacc)}
-nav ul{display:flex;gap:32px;list-style:none;margin:0;padding:0;font-size:14px;font-weight:500}
-nav ul a{position:relative;padding:4px 0;color:var(--herom);transition:color .2s}
-nav ul a:hover{color:var(--heroink)}
-nav .btn{padding:10px 18px;font-size:14px;background:transparent;color:var(--heroink);border-color:var(--heroacc)}
-nav .btn:hover{background:var(--heroacc);color:var(--hero)}
-.hero{background:var(--hero);color:var(--heroink);padding:88px 0 48px;position:relative;overflow:hidden}
+nav{position:fixed;top:14px;left:50%;z-index:50;width:min(calc(100% - 2rem),1180px);transform:translateX(-50%);display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:.45rem .45rem .45rem 1rem;border-radius:999px;background:rgba(246,241,234,.88);-webkit-backdrop-filter:blur(22px) saturate(1.3);backdrop-filter:blur(22px) saturate(1.3);box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),inset 0 1px 0 rgba(255,255,255,.8),0 10px 40px -18px rgba(40,22,6,.45);transition:background .4s}
+nav.s{background:rgba(246,241,234,.95)}
+.nlogo{display:flex;align-items:center;flex-shrink:0}
+.nlogo img{display:block;height:54px;width:auto}
+.nlinks{display:flex;align-items:center;gap:.15rem;list-style:none;margin:0;padding:0}
+.nlinks a{display:block;font-size:.8rem;font-weight:500;color:#6C5847;padding:.55rem .95rem;border-radius:999px;transition:color .3s,background .3s}
+.nlinks a:hover{color:#1B120A}
+.nlinks a.on{color:#1B120A;background:rgba(107,70,30,.09)}
+.nright{display:flex;align-items:center;gap:.9rem}
+.nphone{font-size:.8rem;font-weight:500;color:#6C5847;transition:color .2s}
+.nphone:hover{color:#1B120A}
+.nbtn{display:inline-flex;align-items:center;gap:.7rem;padding:.35rem .35rem .35rem 1.15rem;border-radius:999px;background:#95600F;color:#FFF8EC;font:500 .76rem Inter,system-ui,sans-serif;letter-spacing:.02em;white-space:nowrap;box-shadow:0 1px 2px rgba(80,48,12,.06),0 4px 14px -6px rgba(80,48,12,.1);transition:background .4s,box-shadow .4s}
+.nbtn:hover{background:#7C4F0B;box-shadow:0 2px 4px rgba(80,48,12,.04),0 14px 30px -14px rgba(80,48,12,.3)}
+.nbtn i{width:1.95rem;height:1.95rem;border-radius:50%;display:grid;place-items:center;background:rgba(255,248,236,.16);transition:transform .5s cubic-bezier(.32,.72,0,1)}
+.nbtn:hover i{transform:translate(3px,-1px) scale(1.06)}
+.nbtn svg{width:14px;height:14px}
+.hb{display:none;position:relative;width:46px;height:46px;border-radius:50%;background:#1B120A;border:0;cursor:pointer;flex-shrink:0}
+.hb span{position:absolute;left:50%;top:50%;width:18px;height:1.5px;background:#F6F1EA;border-radius:2px;transition:transform .5s cubic-bezier(.32,.72,0,1)}
+.hb span:nth-child(1){transform:translate(-50%,-4px)}
+.hb span:nth-child(2){transform:translate(-50%,4px)}
+.hb.open span:nth-child(1){transform:translate(-50%,0) rotate(45deg)}
+.hb.open span:nth-child(2){transform:translate(-50%,0) rotate(-45deg)}
+#mm{position:fixed;inset:0;z-index:40;display:flex;flex-direction:column;gap:1.1rem;padding:7rem 1.5rem calc(2rem + env(safe-area-inset-bottom,0px));overflow-y:auto;overscroll-behavior:contain;background:#F6F3EE;color:#1B120A;opacity:0;visibility:hidden;transition:opacity .5s cubic-bezier(.32,.72,0,1),visibility 0s linear .5s}
+#mm.open{opacity:1;visibility:visible;transition:opacity .5s cubic-bezier(.32,.72,0,1),visibility 0s}
+.mlinks{list-style:none;margin:0;padding:0}
+.mlinks a{display:flex;align-items:baseline;gap:1rem;padding:1.05rem 0;border-bottom:1px solid rgba(100,62,18,.14);font:400 2rem/1.1 Fraunces,Georgia,serif;letter-spacing:-.02em}
+.mlinks small{font:500 .7rem Inter,system-ui,sans-serif;color:#95600F;letter-spacing:.12em;min-width:1.6rem}
+.mdock{margin-top:auto;display:grid;gap:.6rem;padding:.95rem;border-radius:24px;background:linear-gradient(150deg,#2A1C10,#140D07);color:#F4EBDD;box-shadow:0 24px 40px -26px rgba(40,22,8,.85),inset 0 1px 0 rgba(255,236,205,.1)}
+.mdock a{display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:.9rem 1.1rem;border-radius:16px;font-weight:600;font-size:.95rem}
+.mdock .mcta{background:#D09A5A;color:#14110e}
+.mdock .mcall{background:rgba(244,235,221,.08);color:#F4EBDD}
+.mdock .mcall small{display:block;font-weight:400;font-size:.76rem;opacity:.7}
+.hero{background:var(--hero);color:var(--heroink);padding:148px 0 48px;position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,var(--heroacc),transparent 65%);opacity:.14;left:-240px;top:-300px;pointer-events:none}
 .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:72px;align-items:center;position:relative}
 .hero .eyebrow,.hero em{color:var(--heroacc)}
@@ -97,16 +121,39 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
 footer a:hover{color:var(--acc)}
 .js .r{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .9s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
 .js .r.in{opacity:1;transform:none}
-@media (max-width:900px){.brands .track{--ls:.72}.mlogo{margin:0 1.5rem}.showcase{margin-bottom:-16px}.showcase img{object-position:72% 60%}.hero .wrap,.cmp,.steps{grid-template-columns:1fr}nav ul{display:none}section{padding:80px 0}.hero{padding:56px 0 24px}.hero .wrap{gap:48px}.steps{gap:40px}.trust .wrap{grid-template-columns:1fr 1fr}.trust .wrap>div:nth-child(odd){border-left:0;padding-left:0}.trust .wrap>div:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:900px){nav{padding-left:.8rem}.nlinks,.nphone,.nbtn{display:none}.hb{display:block}.nlogo img{height:44px}.brands .track{--ls:.72}.mlogo{margin:0 1.5rem}.showcase{margin-bottom:-16px}.showcase img{object-position:72% 60%}.hero .wrap,.cmp,.steps{grid-template-columns:1fr}nav ul{display:none}section{padding:80px 0}.hero{padding:112px 0 24px}.hero .wrap{gap:48px}.steps{gap:40px}.trust .wrap{grid-template-columns:1fr 1fr}.trust .wrap>div:nth-child(odd){border-left:0;padding-left:0}.trust .wrap>div:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:1060px){.nphone{display:none}}
+@media (min-width:901px){#mm{display:none}}
 @media (prefers-reduced-motion:reduce){.brands .track{width:auto;flex-wrap:wrap;justify-content:center}.brands .track>*:nth-child(n+13){display:none}.mq{-webkit-mask-image:none;mask-image:none}*,*::before,*::after{animation:none!important;transition:none!important}.js .r{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-<nav id="nav"><div class="wrap">
-  <a class="logo" href="#top">Sell My <em>RV</em> Online</a>
-  <ul><li><a href="#top">Sell Your RV</a></li><li><a href="#how">How It Works</a></li><li><a href="https://www.sellmyrvonline.com/faq/">FAQs</a></li><li><a href="#contact">Contact Us</a></li></ul>
-  <a class="btn" href="tel:8008631848">800-863-1848</a>
-</div></nav>
+<nav id="nav" aria-label="Main navigation">
+  <a class="nlogo" href="#top" aria-label="Sell My RV Online home"><img src="/logo.png" alt="Sell My RV Online" width="90" height="54"></a>
+  <ul class="nlinks">
+    <li><a href="#top">Sell Your RV</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="https://www.sellmyrvonline.com/faq/">FAQs</a></li>
+    <li><a href="#contact">Contact Us</a></li>
+  </ul>
+  <div class="nright">
+    <a class="nphone" href="tel:8008631848" aria-label="Call us at 800-863-1848">800-863-1848</a>
+    <a class="nbtn" href="#offer">Get your cash offer<i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></i></a>
+    <button class="hb" id="hb" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mm"><span></span><span></span></button>
+  </div>
+</nav>
+<div id="mm" role="dialog" aria-label="Mobile navigation" aria-modal="true" aria-hidden="true">
+  <ul class="mlinks">
+    <li><a href="#top"><small>01</small>Sell Your RV</a></li>
+    <li><a href="#how"><small>02</small>How It Works</a></li>
+    <li><a href="https://www.sellmyrvonline.com/faq/"><small>03</small>FAQs</a></li>
+    <li><a href="#contact"><small>04</small>Contact Us</a></li>
+  </ul>
+  <div class="mdock">
+    <a class="mcta" href="#offer">Get your cash offer <span aria-hidden="true">&rarr;</span></a>
+    <a class="mcall" href="tel:8008631848"><span>Call us<small>800-863-1848</small></span><span aria-hidden="true">&rarr;</span></a>
+  </div>
+</div>
 
 <header class="hero" id="top"><div class="wrap">
   <div>
@@ -197,6 +244,15 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInter
 document.querySelectorAll('.r').forEach(function(el){io.observe(el)});
 function count(el){var t=+el.dataset.to,s=null;(function f(ts){s=s||ts;var p=Math.min((ts-s)/1400,1);el.textContent=Math.round(t*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(performance.now())}
 var nav=document.getElementById('nav');addEventListener('scroll',function(){nav.classList.toggle('s',scrollY>10)},{passive:true});
+var hb=document.getElementById('hb'),mm=document.getElementById('mm');
+function setMenu(o){hb.classList.toggle('open',o);hb.setAttribute('aria-expanded',o);hb.setAttribute('aria-label',o?'Close menu':'Open menu');mm.classList.toggle('open',o);mm.setAttribute('aria-hidden',!o);document.body.style.overflow=o?'hidden':''}
+hb.onclick=function(){setMenu(!hb.classList.contains('open'))};
+[].forEach.call(mm.querySelectorAll('a'),function(a){a.addEventListener('click',function(){setMenu(false)})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&mm.classList.contains('open')){setMenu(false);hb.focus()}});
+addEventListener('resize',function(){if(innerWidth>900&&mm.classList.contains('open'))setMenu(false)});
+var nl=[].slice.call(document.querySelectorAll('.nlinks a[href^="#"]'));
+var spy=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){nl.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id)})}})},{rootMargin:'-45% 0px -50% 0px'});
+nl.forEach(function(l){var t=document.querySelector(l.getAttribute('href'));if(t)spy.observe(t)});
 var f=document.getElementById('f'),st=f.querySelectorAll('.step'),dots=document.querySelectorAll('.dots i');
 function go(n){st.forEach(function(s,i){s.classList.toggle('on',i==n)});dots.forEach(function(d,i){d.classList.toggle('on',i<=n)})}
 function ok(s){var good=true;s.querySelectorAll('[required]').forEach(function(i){var v=i.value.trim()&&i.checkValidity();i.style.borderColor=v?'':'#c0392b';if(!v)good=false});return good}
