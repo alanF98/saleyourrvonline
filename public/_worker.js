@@ -627,7 +627,7 @@ function subpage(o) {
 }
 
 const FAQS = [
-  ['How do you establish the value for my RV?', 'We have over 25 years of experience and a network of RV professionals nationwide that help keep us informed of the current market conditions and allow us to make very competitive offers.'],
+  ['How do you establish the value for my RV?', 'We have over 30 years of experience and a network of RV professionals nationwide that help keep us informed of the current market conditions and allow us to make very competitive offers.'],
   ['What items should I leave in my RV when selling to you?', 'Please leave ALL factory items like bedspreads, decorative pillows, furniture, and remotes. Please remove all personal items from the interior and outside bays. Please do not leave any perishable items in the refrigerator.'],
   ['My RV has been damaged, will you still purchase it?', 'Yes, we will adjust the value according to the estimated repair costs. Please disclose any damage when first contacting us for a value.'],
   ['What documents do I need to provide?', 'We will need a copy of the title or registration if you have a loan, last loan statement, copies of any trust or LLC documents if applicable, copy of your driver’s license, bank account number and routing number (can be provided after physical inspection).'],
@@ -636,7 +636,7 @@ const FAQS = [
   ['When can I cancel my insurance?', 'As soon as funds arrive in your account, and we take physical possession of the RV please cancel your insurance you will no longer have any liability.'],
   ['I have an extended warranty, is it of any value?', 'In most cases we recommend contacting the warranty company to see if they offer a pro-rated refund to you directly.'],
   ['Why should I sell to Sell My RV Online vs selling myself?', 'No hassle sale. No potential for fraud.'],
-  ['Why should I trust Sell My RV Online?', 'We have been in the RV business for over 25 years and have perfected the consumer purchase. You will retain physical possession and title until satisfied with funding.'],
+  ['Why should I trust Sell My RV Online?', 'We have been in the RV business for over 30 years and have perfected the consumer purchase. You will retain physical possession and title until satisfied with funding.'],
   ['I live in a very rural area. How will you arrange to pick up my RV?', 'We have a network of representatives throughout US that are highly experienced in finding their way to the most remote areas.'],
 ];
 
