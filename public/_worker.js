@@ -134,7 +134,7 @@ footer a:hover{color:var(--acc)}
   <ul class="nlinks">
     <li><a href="#top">Sell Your RV</a></li>
     <li><a href="#how">How It Works</a></li>
-    <li><a href="https://www.sellmyrvonline.com/faq/">FAQs</a></li>
+    <li><a href="/faq/">FAQs</a></li>
     <li><a href="#contact">Contact Us</a></li>
   </ul>
   <div class="nright">
@@ -147,7 +147,7 @@ footer a:hover{color:var(--acc)}
   <ul class="mlinks">
     <li><a href="#top"><small>01</small>Sell Your RV</a></li>
     <li><a href="#how"><small>02</small>How It Works</a></li>
-    <li><a href="https://www.sellmyrvonline.com/faq/"><small>03</small>FAQs</a></li>
+    <li><a href="/faq/"><small>03</small>FAQs</a></li>
     <li><a href="#contact"><small>04</small>Contact Us</a></li>
   </ul>
   <div class="mdock">
@@ -163,7 +163,7 @@ footer a:hover{color:var(--acc)}
     <p class="lead r" style="--d:.2s">A hassle-free, quick sale for your coach. 30+ years of experience and network in the RV business means more cash to you.</p>
     <div class="cta r" style="--d:.3s"><a class="btn" href="#offer">Get your cash offer →</a><a class="btn ghost" href="#how">How it works</a></div>
     <div class="stats r" style="--d:.4s">
-      <div><b><span data-to="30">0</span>+</b><span>Years in the RV business</span></div>
+      <div><b><span data-to="30">30</span>+</b><span>Years in the RV business</span></div>
       <div><b>$0</b><span>Nationwide pickup</span></div>
       <div><b>1</b><span>Real person, no call centers</span></div>
     </div>
@@ -236,14 +236,14 @@ footer a:hover{color:var(--acc)}
 
 <footer><div class="wrap">
   <span>© 2026 Southwest Luxury Coach. All rights reserved.</span>
-  <span><a href="https://www.sellmyrvonline.com/about-us/">About Us</a> · <a href="https://www.sellmyrvonline.com/faq/">FAQs</a> · <a href="https://www.sellmyrvonline.com/privacy-policy/">Privacy Policy</a> · <a href="https://www.sellmyrvonline.com/sitemap/">Sitemap</a></span>
+  <span><a href="/about-us/">About Us</a> · <a href="/faq/">FAQs</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/sitemap/">Sitemap</a></span>
 </div></footer>
 
 <script>
 document.documentElement.classList.add('js');
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);var c=e.target.querySelector('[data-to]');if(c)count(c)}})},{threshold:.15});
 document.querySelectorAll('.r').forEach(function(el){io.observe(el)});
-function count(el){var t=+el.dataset.to,s=null;(function f(ts){s=s||ts;var p=Math.min((ts-s)/1400,1);el.textContent=Math.round(t*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(performance.now())}
+function count(el){var t=+el.dataset.to,from=Math.round(t/3),s=null;if(matchMedia('(prefers-reduced-motion:reduce)').matches){el.textContent=t;return}(function f(ts){s=s||ts;var p=Math.min((ts-s)/1400,1);el.textContent=p<1?Math.round(from+(t-from)*(1-Math.pow(1-p,3))):t;if(p<1)requestAnimationFrame(f)})(performance.now())}
 var nav=document.getElementById('nav');addEventListener('scroll',function(){nav.classList.toggle('s',scrollY>10)},{passive:true});
 var hb=document.getElementById('hb'),mm=document.getElementById('mm');
 function setMenu(o){hb.classList.toggle('open',o);hb.setAttribute('aria-expanded',o);hb.setAttribute('aria-label',o?'Close menu':'Open menu');mm.classList.toggle('open',o);mm.setAttribute('aria-hidden',!o);document.body.style.overflow=o?'hidden':''}
