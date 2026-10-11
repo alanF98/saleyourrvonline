@@ -194,6 +194,174 @@ fetch('/api/lead',{method:'POST',body:new FormData(f)}).then(function(r){return 
 </html>
 `;
 
+const adminHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Leads | Sell My RV Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F1EA;--bg2:#EDE5D8;--ink:#1c1915;--mut:#6b6358;--acc:#9c6a34;--card:#fffdf9;--line:rgba(28,25,21,.14);--hero:#14110e;--heroink:#f2ebe0;--heroacc:#d09a5a}
+@media (prefers-color-scheme:dark){:root{--bg:#14110e;--bg2:#1c1814;--ink:#f2ebe0;--mut:#a89d8e;--acc:#d09a5a;--card:#1f1b16;--line:rgba(242,235,224,.16)}}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:400;margin:0;letter-spacing:-.02em}
+em{font-style:italic;color:var(--acc)}
+a{color:inherit}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+header{background:var(--hero);color:var(--heroink)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.logo{font-family:Fraunces,Georgia,serif;font-size:19px;font-weight:600}.logo em{color:var(--heroacc);font-weight:400}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 18px;border-radius:99px;font:600 14px Inter,sans-serif;border:1px solid var(--ink);background:var(--ink);color:var(--bg);cursor:pointer}
+.btn.ghost{background:transparent;color:inherit;border-color:var(--line)}
+header .btn.ghost{color:var(--heroink);border-color:rgba(242,235,224,.3)}
+.btn:disabled{opacity:.6;cursor:wait}
+#login{max-width:420px;margin:12vh auto;padding:0 20px}
+#login h1{font-size:38px;margin-bottom:8px}
+#login p{color:var(--mut);margin:0 0 20px}
+input,select{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:15px}
+input:focus,select:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 22%,transparent)}
+#login .btn{width:100%;margin-top:12px;padding:14px}
+.err{color:#c0392b;font-size:14px;margin-top:10px;min-height:20px}
+#app{display:none}
+.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:28px 0 18px}
+.bar h2{font-size:32px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px}
+.tab{padding:8px 16px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--ink);font:500 14px Inter,sans-serif;cursor:pointer}
+.tab.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.lead{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-bottom:12px}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:flex-start}
+.lead h3{font-size:24px}
+.when{color:var(--mut);font-size:13px}
+.rv{font-size:17px;font-weight:600;margin:10px 0 2px}
+.meta{color:var(--mut);font-size:14px}
+.contact{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:12px;font-size:15px}
+.contact a{color:var(--acc);font-weight:600;text-decoration:none}
+.contact a:hover{text-decoration:underline}
+.note{margin:12px 0 0;padding:10px 12px;background:var(--bg2);border-radius:10px;font-size:14px;white-space:pre-wrap}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.actions select{width:auto;padding:9px 12px;font-size:14px}
+.photo img{display:block;max-width:100%;max-height:420px;border-radius:12px;margin-top:12px}
+.empty{text-align:center;color:var(--mut);padding:60px 0}
+.more{text-align:center;padding:12px 0 48px}
+.badge{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:3px 10px;border-radius:99px;border:1px solid var(--line);color:var(--mut)}
+.badge.new{background:var(--acc);border-color:var(--acc);color:#fff}
+</style>
+</head>
+<body>
+<header><div class="wrap"><span class="logo">Sell My <em>RV</em> Online</span><button class="btn ghost" id="out" style="display:none">Sign out</button></div></header>
+
+<div id="login">
+  <h1>Leads <em>admin</em></h1>
+  <p>Enter your access token to view the leads. It is kept only for this browser session.</p>
+  <form id="lf"><input id="tok" type="password" placeholder="Access token" autocomplete="current-password" required>
+  <button class="btn" type="submit" id="lb">Sign in</button>
+  <div class="err" id="le" role="alert"></div></form>
+</div>
+
+<div id="app"><div class="wrap">
+  <div class="bar"><h2>Leads <em id="count"></em></h2><button class="btn ghost" id="rf">Refresh</button></div>
+  <div class="tabs" id="tabs"></div>
+  <div style="height:16px"></div>
+  <div id="list"></div>
+  <div class="more"><button class="btn ghost" id="more" style="display:none">Load more</button></div>
+</div></div>
+
+<script>
+var STATUSES=['new','contacted','offer','closed'];
+var LABEL={all:'All','new':'New',contacted:'Contacted',offer:'Offer',closed:'Closed'};
+var token='',filter='all',leads=[],lastBefore=null;
+try{token=sessionStorage.getItem('rvtoken')||''}catch(e){}
+var $=function(id){return document.getElementById(id)};
+function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e}
+function api(path,opts){opts=opts||{};opts.headers=Object.assign({authorization:'Bearer '+token},opts.headers||{});return fetch(path,opts)}
+function showApp(on){$('login').style.display=on?'none':'block';$('app').style.display=on?'block':'none';$('out').style.display=on?'inline-flex':'none'}
+function signOut(){token='';try{sessionStorage.removeItem('rvtoken')}catch(e){}leads=[];showApp(false);$('tok').value=''}
+
+function buildTabs(){var t=$('tabs');t.innerHTML='';['all'].concat(STATUSES).forEach(function(s){var b=el('button','tab'+(s===filter?' on':''),LABEL[s]);b.onclick=function(){filter=s;buildTabs();load(true)};t.appendChild(b)})}
+
+function load(reset){
+  if(reset){leads=[];lastBefore=null}
+  var q='?limit=50';if(filter!=='all')q+='&status='+filter;if(lastBefore)q+='&before='+encodeURIComponent(lastBefore);
+  return api('/api/leads'+q).then(function(r){
+    if(r.status===401){signOut();$('le').textContent='Invalid token.';throw new Error('401')}
+    if(!r.ok)throw new Error('Request failed');
+    return r.json();
+  }).then(function(j){
+    leads=leads.concat(j.leads);
+    lastBefore=j.leads.length?j.leads[j.leads.length-1].created_at:lastBefore;
+    $('more').style.display=j.leads.length===50?'inline-flex':'none';
+    render();
+  });
+}
+
+function render(){
+  var list=$('list');list.innerHTML='';
+  $('count').textContent=leads.length?'('+leads.length+(leads.length%50===0?'+':'')+')':'';
+  if(!leads.length){list.appendChild(el('div','empty','No leads here yet.'));return}
+  leads.forEach(function(l){list.appendChild(card(l))});
+}
+
+function card(l){
+  var c=el('div','lead');
+  var top=el('div','top');
+  var left=el('div');left.appendChild(el('h3','',l.name));
+  left.appendChild(el('div','when',new Date(l.created_at).toLocaleString()));
+  top.appendChild(left);
+  top.appendChild(el('span','badge '+l.status,LABEL[l.status]||l.status));
+  c.appendChild(top);
+  c.appendChild(el('div','rv',[l.year,l.make,l.model].join(' ')));
+  c.appendChild(el('div','meta',(l.mileage?l.mileage+' miles · ':'')+'ZIP '+l.zip));
+  var ct=el('div','contact');
+  var tel=el('a','',l.phone);tel.href='tel:'+l.phone.replace(/[^0-9+]/g,'');ct.appendChild(tel);
+  var ml=el('a','',l.email);ml.href='mailto:'+encodeURI(l.email);ct.appendChild(ml);
+  c.appendChild(ct);
+  if(l.comments)c.appendChild(el('div','note',l.comments));
+  var ac=el('div','actions');
+  var sel=document.createElement('select');
+  STATUSES.forEach(function(s){var o=el('option','',LABEL[s]);o.value=s;if(s===l.status)o.selected=true;sel.appendChild(o)});
+  sel.onchange=function(){setStatus(l,sel.value,sel)};
+  ac.appendChild(sel);
+  var ph=el('div','photo');
+  if(l.photo_keys&&l.photo_keys.length){
+    var pb=el('button','btn ghost','View photo');
+    pb.onclick=function(){pb.disabled=true;pb.textContent='Loading...';
+      api('/api/photos/'+l.photo_keys[0]).then(function(r){if(!r.ok)throw new Error();return r.blob()}).then(function(b){
+        var im=document.createElement('img');im.alt='Photo submitted for '+l.name;im.src=URL.createObjectURL(b);ph.appendChild(im);pb.remove();
+      }).catch(function(){pb.disabled=false;pb.textContent='Photo failed, retry'})};
+    ac.appendChild(pb);
+  }
+  c.appendChild(ac);c.appendChild(ph);
+  return c;
+}
+
+function setStatus(l,s,sel){
+  var prev=l.status;
+  api('/api/leads/'+l.id,{method:'PATCH',headers:{'content-type':'application/json'},body:JSON.stringify({status:s})}).then(function(r){
+    if(!r.ok)throw new Error();l.status=s;
+    if(filter!=='all'&&s!==filter){leads=leads.filter(function(x){return x.id!==l.id})}
+    render();
+  }).catch(function(){sel.value=prev;alert('Could not update the status. Try again.')});
+}
+
+$('lf').onsubmit=function(e){
+  e.preventDefault();token=$('tok').value.trim();$('le').textContent='';$('lb').disabled=true;
+  load(true).then(function(){try{sessionStorage.setItem('rvtoken',token)}catch(x){}showApp(true)}).catch(function(x){if(x.message!=='401')$('le').textContent='Something went wrong. Try again.'}).then(function(){$('lb').disabled=false});
+};
+$('out').onclick=signOut;
+$('rf').onclick=function(){load(true)};
+$('more').onclick=function(){load(false)};
+buildTabs();
+if(token){load(true).then(function(){showApp(true)}).catch(function(){})}
+</script>
+</body>
+</html>
+`;
+
 const MAX_PHOTO = 8 * 1024 * 1024;
 const STATUSES = ['new', 'contacted', 'offer', 'closed'];
 
@@ -317,6 +485,11 @@ export default {
     if (url.pathname.startsWith('/api/')) {
       try { return await api(request, env, ctx, url); }
       catch (e) { console.error(e); return json({ error: 'Server error' }, 500); }
+    }
+    if (url.pathname === '/admin' || url.pathname === '/admin/') {
+      return new Response(adminHtml, {
+        headers: { 'content-type': 'text/html;charset=UTF-8', 'x-robots-tag': 'noindex, nofollow', 'cache-control': 'no-store' },
+      });
     }
     if (url.pathname === '/') {
       return new Response(html, { headers: { 'content-type': 'text/html;charset=UTF-8' } });
