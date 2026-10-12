@@ -102,10 +102,10 @@ section{padding:120px 0}
 .head{max-width:680px;margin-bottom:64px}.head h2{font-size:clamp(34px,4.6vw,56px);margin:14px 0 14px}.head p{color:var(--mut)}
 .why{background:var(--hero);color:var(--heroink);position:relative;overflow:hidden;--wt:var(--heroink);--wp:rgba(242,235,224,.76);--wa:var(--heroacc);--wk:var(--heroacc);--wl:var(--heroline)}
 .why::before{content:"";position:absolute;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,var(--heroacc),transparent 65%);opacity:.1;right:-220px;top:-260px;pointer-events:none}
-.why .wrap{position:relative}
-.why .head{max-width:640px;margin-bottom:72px}
-.why .eyebrow,.why em{color:var(--heroacc)}
-.why .head h2{color:var(--heroink);text-wrap:balance}
+.why .wrap,.how .wrap{position:relative}
+.why .head,.how .head{max-width:640px;margin-bottom:72px}
+.why .eyebrow,.why em,.how .eyebrow,.how em{color:var(--heroacc)}
+.why .head h2,.how .head h2{color:var(--heroink);text-wrap:balance}
 .why .head p{color:var(--herom);font-size:19px;max-width:520px}
 .wlist.three{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:56px}
 .wlist.three .wi{padding-bottom:8px}
@@ -120,27 +120,24 @@ section{padding:120px 0}
 .wi p{margin:0;max-width:34ch;font-size:17px;color:var(--wp);text-wrap:pretty}
 .wi p strong{color:var(--wk);font-weight:600;white-space:nowrap}
 @media (hover:hover){.wi:hover::before{background:var(--wa)}}
-.how{background:var(--bg2);--wt:var(--ink);--wp:var(--mut);--wa:var(--acc);--wk:color-mix(in srgb,var(--acc) 78%,var(--ink));--wl:var(--line)}
+.how{background:#1b1713;color:var(--heroink);overflow:hidden;--wt:var(--heroink);--wp:rgba(242,235,224,.76);--wa:var(--heroacc);--wk:var(--heroacc);--wl:var(--heroline)}
+.how::before{content:"";position:absolute;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,var(--heroacc),transparent 65%);opacity:.1;left:-220px;top:-260px;pointer-events:none}
 .stack{position:relative}
 .js .why{position:sticky;top:0;z-index:1}
-.how{position:relative;z-index:2;border-radius:32px 32px 0 0;box-shadow:0 -1px 0 var(--line),0 -28px 60px -24px rgba(0,0,0,.5);min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center}
+.how{position:relative;z-index:2;border-radius:32px 32px 0 0;box-shadow:0 -1px 0 rgba(242,235,224,.14),0 -28px 60px -24px rgba(0,0,0,.65);min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center}
 .how .wrap{width:100%}
-.band{background:var(--hero);color:var(--heroink);border-radius:32px;padding:80px 64px;position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:32px 56px}
-.band::before{content:"";position:absolute;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,var(--heroacc),transparent 65%);opacity:.22;right:-160px;top:-240px;pointer-events:none}
-.band>*{position:relative}
+.band{background:var(--hero);color:var(--heroink);text-align:center;border-radius:32px;padding:96px 24px;position:relative;overflow:hidden}
+.band::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,var(--heroacc),transparent 65%);opacity:.3;left:50%;top:-260px;transform:translateX(-50%)}
 .band .eyebrow,.band em{color:var(--heroacc)}
-.band h2{font-size:clamp(34px,4.6vw,56px);margin:14px 0 0;text-wrap:balance}
-.bcta{display:flex;flex-wrap:wrap;gap:12px}
-.band .btn{background:var(--heroacc);color:var(--hero);border-color:var(--heroacc)}
+.band h2{font-size:clamp(34px,5vw,60px);position:relative}
+.band .btn{background:var(--heroacc);color:var(--hero);border-color:var(--heroacc);margin-top:32px;font-size:20px;padding:18px 34px;position:relative}
 .band .btn:hover{background:var(--heroink);border-color:var(--heroink)}
-.band .btn.ghost{background:transparent;color:var(--heroink);border-color:var(--heroline)}
-.band .btn.ghost:hover{border-color:var(--heroink);background:transparent}
 footer{padding:50px 0 40px;font-size:14px;color:var(--mut)}
 footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
 footer a:hover{color:var(--acc)}
 .js .r{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .9s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
 .js .r.in{opacity:1;transform:none}
-@media (max-width:900px){.brands .track{--ls:.72}.mlogo{margin:0 1.5rem}.showcase{margin-bottom:-16px}.showcase img{object-position:72% 60%}.how{border-radius:24px 24px 0 0}.hero .wrap{grid-template-columns:1fr}.wlist,.wlist.three{grid-template-columns:1fr}.wi,.wlist.three .wi{padding:30px 0 36px}.band{grid-template-columns:1fr;padding:48px 28px;border-radius:24px}.why .head{margin-bottom:40px}.why .head p{font-size:17px}nav ul{display:none}section{padding:80px 0}.hero{padding:112px 0 24px}.hero .wrap{gap:48px}.trust .wrap{grid-template-columns:1fr 1fr}.trust .wrap>div:nth-child(odd){border-left:0;padding-left:0}.trust .wrap>div:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:900px){.brands .track{--ls:.72}.mlogo{margin:0 1.5rem}.showcase{margin-bottom:-16px}.showcase img{object-position:72% 60%}.how{border-radius:24px 24px 0 0}.hero .wrap{grid-template-columns:1fr}.wlist,.wlist.three{grid-template-columns:1fr}.wi,.wlist.three .wi{padding:30px 0 36px}.why .head,.how .head{margin-bottom:40px}.why .head p{font-size:17px}nav ul{display:none}section{padding:80px 0}.hero{padding:112px 0 24px}.hero .wrap{gap:48px}.trust .wrap{grid-template-columns:1fr 1fr}.trust .wrap>div:nth-child(odd){border-left:0;padding-left:0}.trust .wrap>div:nth-child(n+3){border-top:1px solid var(--line)}}
 @media (max-width:1060px){.nphone{display:none}}
 @media (max-width:980px){nav{padding-left:.8rem}.nlinks,.nphone,.nbtn{display:none}.hb{display:block}.nlogo img{height:23px}}
 @media (min-width:981px){#mm{display:none}}
@@ -250,8 +247,9 @@ footer a:hover{color:var(--acc)}
 </div>
 
 <section id="contact" aria-labelledby="cta-title"><div class="wrap"><div class="band r">
-  <div><span class="eyebrow">Nº 03 · Ready when you are</span><h2 id="cta-title">Let’s talk about <em>your coach.</em></h2></div>
-  <div class="bcta"><a class="btn" href="tel:8008631848">Call 800-863-1848</a><a class="btn ghost" href="#offer">Get your cash offer</a></div>
+  <span class="eyebrow">Ready when you are</span>
+  <h2 id="cta-title" style="margin-top:14px">Let's talk about <em>your coach.</em></h2>
+  <a class="btn" href="tel:8008631848">Call 800-863-1848</a>
 </div></div></section>
 
 <footer><div class="wrap">
