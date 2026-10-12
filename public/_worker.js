@@ -100,32 +100,51 @@ input:focus,textarea:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0
 @keyframes m{to{transform:translateX(-50%)}}
 section{padding:120px 0}
 .head{max-width:680px;margin-bottom:64px}.head h2{font-size:clamp(34px,4.6vw,56px);margin:14px 0 14px}.head p{color:var(--mut)}
-.cmp{display:grid;grid-template-columns:repeat(2,1fr);column-gap:72px}
-.c{border-top:1px solid var(--line);padding:36px 0 52px}
-.c small{font-family:Fraunces,Georgia,serif;color:var(--acc);font-size:15px}
-.c h3{font-size:28px;margin:8px 0 18px}
-.c p{margin:6px 0;font-size:15px}.c .old{color:var(--mut);text-decoration:line-through}.c b{font-size:11px;letter-spacing:.14em;text-transform:uppercase;display:block;color:var(--mut);margin-top:10px}
-.how{border-top:1px solid var(--line)}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:64px}
-.steps>div{border-top:1px solid var(--acc);padding-top:24px}
-.n{font:400 64px/1 Fraunces,Georgia,serif;color:var(--acc);margin-bottom:20px}
-.steps h3{font-size:26px;margin-bottom:8px}.steps p{color:var(--mut);margin:0}
-.band{background:var(--hero);color:var(--heroink);text-align:center;border-radius:32px;padding:96px 24px;position:relative;overflow:hidden}
-.band::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,var(--heroacc),transparent 65%);opacity:.3;left:50%;top:-260px;transform:translateX(-50%)}
+.why{background:var(--hero);color:var(--heroink);position:relative;overflow:hidden;--wt:var(--heroink);--wp:rgba(242,235,224,.76);--wa:var(--heroacc);--wk:var(--heroacc);--wl:var(--heroline)}
+.why::before{content:"";position:absolute;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,var(--heroacc),transparent 65%);opacity:.1;right:-220px;top:-260px;pointer-events:none}
+.why .wrap{position:relative}
+.why .head{max-width:640px;margin-bottom:72px}
+.why .eyebrow,.why em{color:var(--heroacc)}
+.why .head h2{color:var(--heroink);text-wrap:balance}
+.why .head p{color:var(--herom);font-size:19px;max-width:520px}
+.wlist.three{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:56px}
+.wlist.three .wi{padding-bottom:8px}
+.wlist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:96px}
+.wi{position:relative;padding:40px 0 52px}
+.wi::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--wl);transition:background .4s}
+.js .wi::before{transform:scaleX(0);transform-origin:left;transition:transform 1.1s cubic-bezier(.2,.7,.2,1) var(--d,0s),background .4s}
+.js .wi.in::before{transform:none}
+.wn{display:block;font:italic 400 15px/1 Fraunces,Georgia,serif;letter-spacing:.06em;color:var(--wa);margin-bottom:18px}
+.wi h3{font-size:clamp(28px,3vw,34px);color:var(--wt);margin:0 0 14px}
+.wi h3 em{color:var(--wa)}
+.wi p{margin:0;max-width:34ch;font-size:17px;color:var(--wp);text-wrap:pretty}
+.wi p strong{color:var(--wk);font-weight:600;white-space:nowrap}
+@media (hover:hover){.wi:hover::before{background:var(--wa)}}
+.how{background:var(--bg2);--wt:var(--ink);--wp:var(--mut);--wa:var(--acc);--wk:color-mix(in srgb,var(--acc) 78%,var(--ink));--wl:var(--line)}
+.stack{position:relative}
+.js .why{position:sticky;top:0;z-index:1}
+.how{position:relative;z-index:2;border-radius:32px 32px 0 0;box-shadow:0 -1px 0 var(--line),0 -28px 60px -24px rgba(0,0,0,.5);min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center}
+.how .wrap{width:100%}
+.band{background:var(--hero);color:var(--heroink);border-radius:32px;padding:80px 64px;position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:32px 56px}
+.band::before{content:"";position:absolute;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,var(--heroacc),transparent 65%);opacity:.22;right:-160px;top:-240px;pointer-events:none}
+.band>*{position:relative}
 .band .eyebrow,.band em{color:var(--heroacc)}
-.band h2{font-size:clamp(34px,5vw,60px);position:relative}
-.band .btn{background:var(--heroacc);color:var(--hero);border-color:var(--heroacc);margin-top:32px;font-size:20px;padding:18px 34px;position:relative}
+.band h2{font-size:clamp(34px,4.6vw,56px);margin:14px 0 0;text-wrap:balance}
+.bcta{display:flex;flex-wrap:wrap;gap:12px}
+.band .btn{background:var(--heroacc);color:var(--hero);border-color:var(--heroacc)}
 .band .btn:hover{background:var(--heroink);border-color:var(--heroink)}
+.band .btn.ghost{background:transparent;color:var(--heroink);border-color:var(--heroline)}
+.band .btn.ghost:hover{border-color:var(--heroink);background:transparent}
 footer{padding:50px 0 40px;font-size:14px;color:var(--mut)}
 footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
 footer a:hover{color:var(--acc)}
 .js .r{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .9s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
 .js .r.in{opacity:1;transform:none}
-@media (max-width:900px){.brands .track{--ls:.72}.mlogo{margin:0 1.5rem}.showcase{margin-bottom:-16px}.showcase img{object-position:72% 60%}.hero .wrap,.cmp,.steps{grid-template-columns:1fr}nav ul{display:none}section{padding:80px 0}.hero{padding:112px 0 24px}.hero .wrap{gap:48px}.steps{gap:40px}.trust .wrap{grid-template-columns:1fr 1fr}.trust .wrap>div:nth-child(odd){border-left:0;padding-left:0}.trust .wrap>div:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:900px){.brands .track{--ls:.72}.mlogo{margin:0 1.5rem}.showcase{margin-bottom:-16px}.showcase img{object-position:72% 60%}.how{border-radius:24px 24px 0 0}.hero .wrap{grid-template-columns:1fr}.wlist,.wlist.three{grid-template-columns:1fr}.wi,.wlist.three .wi{padding:30px 0 36px}.band{grid-template-columns:1fr;padding:48px 28px;border-radius:24px}.why .head{margin-bottom:40px}.why .head p{font-size:17px}nav ul{display:none}section{padding:80px 0}.hero{padding:112px 0 24px}.hero .wrap{gap:48px}.trust .wrap{grid-template-columns:1fr 1fr}.trust .wrap>div:nth-child(odd){border-left:0;padding-left:0}.trust .wrap>div:nth-child(n+3){border-top:1px solid var(--line)}}
 @media (max-width:1060px){.nphone{display:none}}
 @media (max-width:980px){nav{padding-left:.8rem}.nlinks,.nphone,.nbtn{display:none}.hb{display:block}.nlogo img{height:23px}}
 @media (min-width:981px){#mm{display:none}}
-@media (prefers-reduced-motion:reduce){.brands .track{width:auto;flex-wrap:wrap;justify-content:center}.brands .track>*:nth-child(n+13){display:none}.mq{-webkit-mask-image:none;mask-image:none}*,*::before,*::after{animation:none!important;transition:none!important}.js .r{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.js .wi::before{transform:none}.js .why{position:relative;top:auto!important}.how{border-radius:0;box-shadow:none;min-height:0;display:block}.brands .track{width:auto;flex-wrap:wrap;justify-content:center}.brands .track>*:nth-child(n+13){display:none}.mq{-webkit-mask-image:none;mask-image:none}*,*::before,*::after{animation:none!important;transition:none!important}.js .r{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -209,29 +228,30 @@ footer a:hover{color:var(--acc)}
   <div class="mq" aria-hidden="true"><div class="track"><span class="mlogo" style="--src:url(/brands/newell.png);--w:188px;--r:10.24"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/prevost.svg);--w:168px;--r:11.76"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newmar.svg);--w:108px;--r:2.5"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/marathon.svg);--w:98px;--r:2.04"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/renegade.png);--w:150px;--r:4.01"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/showhauler.png);--w:96px;--r:2.09"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newell.png);--w:188px;--r:10.24"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/prevost.svg);--w:168px;--r:11.76"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newmar.svg);--w:108px;--r:2.5"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/marathon.svg);--w:98px;--r:2.04"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/renegade.png);--w:150px;--r:4.01"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/showhauler.png);--w:96px;--r:2.09"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newell.png);--w:188px;--r:10.24"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/prevost.svg);--w:168px;--r:11.76"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newmar.svg);--w:108px;--r:2.5"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/marathon.svg);--w:98px;--r:2.04"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/renegade.png);--w:150px;--r:4.01"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/showhauler.png);--w:96px;--r:2.09"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newell.png);--w:188px;--r:10.24"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/prevost.svg);--w:168px;--r:11.76"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newmar.svg);--w:108px;--r:2.5"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/marathon.svg);--w:98px;--r:2.04"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/renegade.png);--w:150px;--r:4.01"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/showhauler.png);--w:96px;--r:2.09"></span><span class="mdot"></span></div></div>
 </section>
 
-<section id="why"><div class="wrap">
-  <div class="head r"><span class="eyebrow">Nº 01 · Why sell with us</span><h2>A different kind <em>of buyer.</em></h2><p>Selling a coach shouldn't be a second job. Here is what changes when you sell to us.</p></div>
-  <div class="cmp">
-    <div class="c r"><small>01</small><h3>Paperwork, <em>handled.</em></h3><b>The usual way</b><p class="old">Title, lien and lender calls on you.</p><b>With us</b><p>We handle all paperwork, including bank payoffs.</p></div>
-    <div class="c r" style="--d:.1s"><small>02</small><h3>Pickup, <em>on us.</em></h3><b>The usual way</b><p class="old">Arrange and pay for your own transport.</p><b>With us</b><p>Fast, free nationwide pickup.</p></div>
-    <div class="c r" style="--d:.2s"><small>03</small><h3>A real <em>person.</em></h3><b>The usual way</b><p class="old">Call centers and endless hold music.</p><b>With us</b><p>Easy communication with a real person from the start.</p></div>
-    <div class="c r" style="--d:.3s"><small>04</small><h3>More cash <em>to you.</em></h3><b>The usual way</b><p class="old">A lowball from someone who doesn't know coaches.</p><b>With us</b><p>30+ years of experience and network in the RV business.</p></div>
-  </div>
+<div class="stack">
+<section id="why" class="why" aria-labelledby="why-title"><div class="wrap">
+  <div class="head r"><span class="eyebrow">Nº 01 · Why sell with us</span><h2 id="why-title">A different kind <em>of buyer.</em></h2><p>Selling your coach should be simple. We handle the paperwork and pickup, so you can focus on what’s next.</p></div>
+  <ol class="wlist" role="list">
+    <li class="wi r"><span class="wn" aria-hidden="true">01</span><h3>Paperwork, <em>handled.</em></h3><p>We take care of titles, liens, lender calls, and bank payoffs.</p></li>
+    <li class="wi r" style="--d:.1s"><span class="wn" aria-hidden="true">02</span><h3>Pickup, <em>on us.</em></h3><p>Free pickup, anywhere in the country.</p></li>
+    <li class="wi r" style="--d:.2s"><span class="wn" aria-hidden="true">03</span><h3>A real <em>person.</em></h3><p>Speak with a real person from the start.</p></li>
+    <li class="wi r" style="--d:.3s"><span class="wn" aria-hidden="true">04</span><h3>Experience that <em>counts.</em></h3><p>An offer backed by <strong>30+ years</strong> in the RV business and a nationwide network.</p></li>
+  </ol>
 </div></section>
 
-<section class="how" id="how"><div class="wrap">
-  <div class="head r"><span class="eyebrow">Nº 02 · How it works</span><h2>Three steps. <em>No stress.</em></h2></div>
-  <div class="steps r" id="st">
-    <div><div class="n">1</div><h3>Tell us about it</h3><p>Year, make, model and mileage, plus a photo if you have one. Use the form or call us.</p></div>
-    <div><div class="n">2</div><h3>Get your offer</h3><p>A real person reaches out with a cash offer backed by 30+ years in the business.</p></div>
-    <div><div class="n">3</div><h3>We take it from here</h3><p>We handle the paperwork and bank payoff, then pick up your coach for free.</p></div>
-  </div>
+<section class="how" id="how" aria-labelledby="how-title"><div class="wrap">
+  <div class="head r"><span class="eyebrow">Nº 02 · How it works</span><h2 id="how-title">Three steps. <em>No stress.</em></h2></div>
+  <ol class="wlist three" role="list">
+    <li class="wi r"><span class="wn" aria-hidden="true">01</span><h3>Tell us <em>about it</em></h3><p>Year, make, model and mileage, plus a photo if you have one. Use the form or call us.</p></li>
+    <li class="wi r" style="--d:.1s"><span class="wn" aria-hidden="true">02</span><h3>Get your <em>offer</em></h3><p>A real person reaches out with a <strong>cash offer</strong> backed by 30+ years in the business.</p></li>
+    <li class="wi r" style="--d:.2s"><span class="wn" aria-hidden="true">03</span><h3>We take it <em>from here</em></h3><p>We handle the paperwork and bank payoff, then pick up your coach <strong>for free</strong>.</p></li>
+  </ol>
 </div></section>
+</div>
 
-<section id="contact"><div class="wrap"><div class="band r">
-  <span class="eyebrow">Ready when you are</span>
-  <h2 style="margin-top:14px">Let's talk about <em>your coach.</em></h2>
-  <a class="btn" href="tel:8008631848">Call 800-863-1848</a>
+<section id="contact" aria-labelledby="cta-title"><div class="wrap"><div class="band r">
+  <div><span class="eyebrow">Nº 03 · Ready when you are</span><h2 id="cta-title">Let’s talk about <em>your coach.</em></h2></div>
+  <div class="bcta"><a class="btn" href="tel:8008631848">Call 800-863-1848</a><a class="btn ghost" href="#offer">Get your cash offer</a></div>
 </div></div></section>
 
 <footer><div class="wrap">
@@ -245,6 +265,10 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInter
 document.querySelectorAll('.r').forEach(function(el){io.observe(el)});
 function count(el){var t=+el.dataset.to,from=Math.round(t/3),s=null;if(matchMedia('(prefers-reduced-motion:reduce)').matches){el.textContent=t;return}(function f(ts){s=s||ts;var p=Math.min((ts-s)/1400,1);el.textContent=p<1?Math.round(from+(t-from)*(1-Math.pow(1-p,3))):t;if(p<1)requestAnimationFrame(f)})(performance.now())}
 var nav=document.getElementById('nav');addEventListener('scroll',function(){nav.classList.toggle('s',scrollY>10)},{passive:true});
+var why=document.getElementById('why');
+function stk(){why.style.top=Math.min(0,document.documentElement.clientHeight-why.offsetHeight)+'px'}
+stk();addEventListener('resize',stk);addEventListener('load',stk);
+if(window.ResizeObserver)new ResizeObserver(stk).observe(why);
 var hb=document.getElementById('hb'),mm=document.getElementById('mm');
 function setMenu(o){hb.classList.toggle('open',o);hb.setAttribute('aria-expanded',o);hb.setAttribute('aria-label',o?'Close menu':'Open menu');mm.classList.toggle('open',o);mm.setAttribute('aria-hidden',!o);document.body.style.overflow=o?'hidden':''}
 hb.onclick=function(){setMenu(!hb.classList.contains('open'))};
