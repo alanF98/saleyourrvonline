@@ -85,6 +85,9 @@ a{color:inherit;text-decoration:none}
 .hero{background:var(--hero);height:calc(100svh - 50px);min-height:640px;max-height:860px;padding-top:98px;color:var(--heroink);display:flex;align-items:center;position:relative;overflow:hidden}
 .hero picture{position:absolute;inset:0}
 .himg{display:block;width:100%;height:100%;object-fit:cover;object-position:center 59%}
+.js .hero{position:sticky;top:0;z-index:1}
+.dim{position:absolute;inset:0;background:#0d0b09;opacity:var(--p,0);pointer-events:none}
+.sheet{position:relative;z-index:2;margin-top:-20px;background:var(--bg);border-radius:24px 24px 0 0;box-shadow:0 -1px 0 rgba(255,255,255,.14),0 -24px 50px -26px rgba(0,0,0,.5)}
 .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 48% at 50% 54%,rgba(20,17,14,.42),transparent 72%),linear-gradient(180deg,rgba(20,17,14,.5),rgba(20,17,14,.66) 45%,rgba(20,17,14,.52))}
 .hcontent{position:relative;z-index:1;text-align:center;padding-block:35px 65px}
 .pill{display:inline-flex;align-items:center;gap:9px;margin:0;padding:9px 16px;border:1px solid var(--heroacc);border-radius:30px;font-size:10px;font-weight:600;letter-spacing:0;text-transform:uppercase;line-height:1.5}
@@ -97,7 +100,7 @@ a{color:inherit;text-decoration:none}
 .hassure svg{width:14px;height:14px;flex-shrink:0}
 .hcap{position:absolute;z-index:2;bottom:30px;right:48px;display:flex;align-items:center;gap:7px;color:rgba(242,235,224,.78);font-size:10px;text-shadow:0 1px 10px rgba(20,17,14,.6)}
 .hcap svg{width:14px;height:14px}
-.tband{position:relative;z-index:2;margin-top:-20px;background:var(--bg);border-bottom:1px solid var(--line);border-radius:24px 24px 0 0}
+.tband{border-bottom:1px solid var(--line)}
 .tgrid{display:grid;grid-template-columns:repeat(4,1fr);padding-block:29px}
 .titem{display:flex;justify-content:center;align-items:center;gap:14px;border-right:1px solid var(--line)}
 .titem:first-child{justify-content:flex-start}
@@ -190,7 +193,7 @@ a{color:inherit;text-decoration:none}
 .cinner h2{font-size:38px}
 .sfoot{flex-direction:column;align-items:flex-start;gap:18px;line-height:1.7}
 }
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .r{opacity:1;transform:none}.brands .track{width:auto;flex-wrap:wrap;justify-content:center}.brands .track>*:nth-child(n+13){display:none}.mq{-webkit-mask-image:none;mask-image:none}}
+@media (prefers-reduced-motion:reduce){.js .hero{position:relative}.dim{display:none}*,*::before,*::after{animation:none!important;transition:none!important}.js .r{opacity:1;transform:none}.brands .track{width:auto;flex-wrap:wrap;justify-content:center}.brands .track>*:nth-child(n+13){display:none}.mq{-webkit-mask-image:none;mask-image:none}}
 
 @media (max-width:1060px){.nphone{display:none}}
 @media (max-width:980px){#nav{padding-left:.8rem}.nlinks,.nphone,.nbtn{display:none}.hb{display:block}.nlogo img{height:23px}}
@@ -228,6 +231,7 @@ a{color:inherit;text-decoration:none}
 <main>
 <header class="hero" id="top">
   <picture><source srcset="/hero-sunset.webp" type="image/webp"><img class="himg" src="/hero-sunset.jpg" width="1083" height="744" alt="Luxury motorcoach in the Arizona desert at sunset" fetchpriority="high" decoding="async"></picture>
+  <div class="dim" aria-hidden="true"></div>
   <div class="sw hcontent r">
     <p class="pill"><span class="dot"></span>GOOD PEOPLE. FAIR OFFERS. NEW BEGINNINGS.</p>
     <h1>Sell your RV.<br><span>Keep your peace of mind.</span></h1>
@@ -238,6 +242,7 @@ a{color:inherit;text-decoration:none}
   <span class="hcap"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>ARIZONA ROOTS. NATIONWIDE REACH.</span>
 </header>
 
+<div class="sheet">
 <section class="tband" aria-label="Why owners choose us"><div class="sw tgrid">
   <div class="titem"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg><div><strong>Free nationwide pickup</strong><span>Wherever you are, we come to you</span></div></div>
   <div class="titem"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 22H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v6"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="m14 20 2 2 4-4"/></svg><div><strong>We handle the paperwork</strong><span>Including your bank payoff</span></div></div>
@@ -313,6 +318,7 @@ a{color:inherit;text-decoration:none}
     <div class="ben r" style="--d:.3s"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg><h3>More cash to you.</h3><p>Our experience and nationwide network help us see the real value in your coach.</p></div>
   </div>
 </section>
+</div>
 </main>
 
 <section class="cband" id="contact"><div class="sw cinner">
@@ -333,9 +339,14 @@ hb.onclick=function(){setMenu(!hb.classList.contains('open'))};
 [].forEach.call(mm.querySelectorAll('a'),function(a){a.addEventListener('click',function(){setMenu(false)})});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&mm.classList.contains('open')){setMenu(false);hb.focus()}});
 addEventListener('resize',function(){if(innerWidth>980&&mm.classList.contains('open'))setMenu(false)});
-var nl=[].slice.call(document.querySelectorAll('.nlinks a[href^="#"]'));
-var spy=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){nl.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id)})}})},{rootMargin:'-45% 0px -50% 0px'});
-nl.forEach(function(l){var t=document.querySelector(l.getAttribute('href'));if(t)spy.observe(t)});
+var nl=[].slice.call(document.querySelectorAll('.nlinks a[href^="#"]')),hero=document.getElementById('top'),ticking=false;
+function onScroll(){ticking=false;
+var line=innerHeight*.45,cur='top';['how','contact'].forEach(function(id){var e=document.getElementById(id);if(e&&e.getBoundingClientRect().top<=line)cur=id});
+if(innerHeight+scrollY>=document.documentElement.scrollHeight-4)cur='contact';
+nl.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+cur)});
+var p=Math.min(1,Math.max(0,scrollY/(hero.offsetHeight*.9)));hero.style.setProperty('--p',(p*.55).toFixed(3))}
+addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});
+addEventListener('resize',onScroll);onScroll();
 var f=document.getElementById('f'),p1=document.getElementById('p1'),p2=document.getElementById('p2'),nx=document.getElementById('nx'),bk=document.getElementById('bk'),err=document.getElementById('err'),step=0,sending=false;
 function go(n){step=n;p1.hidden=n!==0;p2.hidden=n!==1;bk.hidden=n===0;
 document.getElementById('ft').textContent=n?'How can we reach you?':'A little about your RV';
