@@ -100,11 +100,23 @@ input:focus,textarea:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0
 @keyframes m{to{transform:translateX(-50%)}}
 section{padding:120px 0}
 .head{max-width:680px;margin-bottom:64px}.head h2{font-size:clamp(34px,4.6vw,56px);margin:14px 0 14px}.head p{color:var(--mut)}
-.cmp{display:grid;grid-template-columns:repeat(2,1fr);column-gap:72px}
-.c{border-top:1px solid var(--line);padding:36px 0 52px}
-.c small{font-family:Fraunces,Georgia,serif;color:var(--acc);font-size:15px}
-.c h3{font-size:28px;margin:8px 0 18px}
-.c p{margin:6px 0;font-size:15px}.c .old{color:var(--mut);text-decoration:line-through}.c b{font-size:11px;letter-spacing:.14em;text-transform:uppercase;display:block;color:var(--mut);margin-top:10px}
+.why{background:var(--hero);color:var(--heroink);position:relative;overflow:hidden}
+.why::before{content:"";position:absolute;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,var(--heroacc),transparent 65%);opacity:.1;right:-220px;top:-260px;pointer-events:none}
+.why .wrap{position:relative}
+.why .head{max-width:640px;margin-bottom:72px}
+.why .eyebrow,.why em{color:var(--heroacc)}
+.why .head h2{color:var(--heroink);text-wrap:balance}
+.why .head p{color:var(--herom);font-size:19px;max-width:520px}
+.wlist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:96px}
+.wi{position:relative;padding:40px 0 52px}
+.wi::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--heroline);transition:background .4s}
+.js .wi::before{transform:scaleX(0);transform-origin:left;transition:transform 1.1s cubic-bezier(.2,.7,.2,1) var(--d,0s),background .4s}
+.js .wi.in::before{transform:none}
+.wn{display:block;font:italic 400 15px/1 Fraunces,Georgia,serif;letter-spacing:.06em;color:var(--heroacc);margin-bottom:18px}
+.wi h3{font-size:clamp(28px,3vw,34px);color:var(--heroink);margin:0 0 14px}
+.wi p{margin:0;max-width:34ch;font-size:17px;color:rgba(242,235,224,.76)}
+.wi p strong{color:var(--heroacc);font-weight:500}
+@media (hover:hover){.wi:hover::before{background:var(--heroacc)}}
 .how{border-top:1px solid var(--line)}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:64px}
 .steps>div{border-top:1px solid var(--acc);padding-top:24px}
@@ -121,11 +133,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
 footer a:hover{color:var(--acc)}
 .js .r{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .9s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
 .js .r.in{opacity:1;transform:none}
-@media (max-width:900px){.brands .track{--ls:.72}.mlogo{margin:0 1.5rem}.showcase{margin-bottom:-16px}.showcase img{object-position:72% 60%}.hero .wrap,.cmp,.steps{grid-template-columns:1fr}nav ul{display:none}section{padding:80px 0}.hero{padding:112px 0 24px}.hero .wrap{gap:48px}.steps{gap:40px}.trust .wrap{grid-template-columns:1fr 1fr}.trust .wrap>div:nth-child(odd){border-left:0;padding-left:0}.trust .wrap>div:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:900px){.brands .track{--ls:.72}.mlogo{margin:0 1.5rem}.showcase{margin-bottom:-16px}.showcase img{object-position:72% 60%}.hero .wrap,.steps{grid-template-columns:1fr}.wlist{grid-template-columns:1fr}.wi{padding:30px 0 36px}.why .head{margin-bottom:40px}.why .head p{font-size:17px}nav ul{display:none}section{padding:80px 0}.hero{padding:112px 0 24px}.hero .wrap{gap:48px}.steps{gap:40px}.trust .wrap{grid-template-columns:1fr 1fr}.trust .wrap>div:nth-child(odd){border-left:0;padding-left:0}.trust .wrap>div:nth-child(n+3){border-top:1px solid var(--line)}}
 @media (max-width:1060px){.nphone{display:none}}
 @media (max-width:980px){nav{padding-left:.8rem}.nlinks,.nphone,.nbtn{display:none}.hb{display:block}.nlogo img{height:23px}}
 @media (min-width:981px){#mm{display:none}}
-@media (prefers-reduced-motion:reduce){.brands .track{width:auto;flex-wrap:wrap;justify-content:center}.brands .track>*:nth-child(n+13){display:none}.mq{-webkit-mask-image:none;mask-image:none}*,*::before,*::after{animation:none!important;transition:none!important}.js .r{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.js .wi::before{transform:none}.brands .track{width:auto;flex-wrap:wrap;justify-content:center}.brands .track>*:nth-child(n+13){display:none}.mq{-webkit-mask-image:none;mask-image:none}*,*::before,*::after{animation:none!important;transition:none!important}.js .r{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -209,14 +221,14 @@ footer a:hover{color:var(--acc)}
   <div class="mq" aria-hidden="true"><div class="track"><span class="mlogo" style="--src:url(/brands/newell.png);--w:188px;--r:10.24"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/prevost.svg);--w:168px;--r:11.76"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newmar.svg);--w:108px;--r:2.5"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/marathon.svg);--w:98px;--r:2.04"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/renegade.png);--w:150px;--r:4.01"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/showhauler.png);--w:96px;--r:2.09"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newell.png);--w:188px;--r:10.24"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/prevost.svg);--w:168px;--r:11.76"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newmar.svg);--w:108px;--r:2.5"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/marathon.svg);--w:98px;--r:2.04"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/renegade.png);--w:150px;--r:4.01"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/showhauler.png);--w:96px;--r:2.09"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newell.png);--w:188px;--r:10.24"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/prevost.svg);--w:168px;--r:11.76"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newmar.svg);--w:108px;--r:2.5"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/marathon.svg);--w:98px;--r:2.04"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/renegade.png);--w:150px;--r:4.01"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/showhauler.png);--w:96px;--r:2.09"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newell.png);--w:188px;--r:10.24"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/prevost.svg);--w:168px;--r:11.76"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newmar.svg);--w:108px;--r:2.5"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/marathon.svg);--w:98px;--r:2.04"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/renegade.png);--w:150px;--r:4.01"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/showhauler.png);--w:96px;--r:2.09"></span><span class="mdot"></span></div></div>
 </section>
 
-<section id="why"><div class="wrap">
-  <div class="head r"><span class="eyebrow">Nº 01 · Why sell with us</span><h2>A different kind <em>of buyer.</em></h2><p>Selling a coach shouldn't be a second job. Here is what changes when you sell to us.</p></div>
-  <div class="cmp">
-    <div class="c r"><small>01</small><h3>Paperwork, <em>handled.</em></h3><b>The usual way</b><p class="old">Title, lien and lender calls on you.</p><b>With us</b><p>We handle all paperwork, including bank payoffs.</p></div>
-    <div class="c r" style="--d:.1s"><small>02</small><h3>Pickup, <em>on us.</em></h3><b>The usual way</b><p class="old">Arrange and pay for your own transport.</p><b>With us</b><p>Fast, free nationwide pickup.</p></div>
-    <div class="c r" style="--d:.2s"><small>03</small><h3>A real <em>person.</em></h3><b>The usual way</b><p class="old">Call centers and endless hold music.</p><b>With us</b><p>Easy communication with a real person from the start.</p></div>
-    <div class="c r" style="--d:.3s"><small>04</small><h3>More cash <em>to you.</em></h3><b>The usual way</b><p class="old">A lowball from someone who doesn't know coaches.</p><b>With us</b><p>30+ years of experience and network in the RV business.</p></div>
-  </div>
+<section id="why" class="why" aria-labelledby="why-title"><div class="wrap">
+  <div class="head r"><span class="eyebrow">Nº 01 · Why sell with us</span><h2 id="why-title">A different kind <em>of buyer.</em></h2><p>Selling your coach should be simple. We handle the paperwork and pickup, so you can focus on what’s next.</p></div>
+  <ol class="wlist" role="list">
+    <li class="wi r"><span class="wn" aria-hidden="true">01</span><h3>Paperwork, <em>handled.</em></h3><p>We take care of titles, liens, lender calls, and bank payoffs.</p></li>
+    <li class="wi r" style="--d:.1s"><span class="wn" aria-hidden="true">02</span><h3>Pickup, <em>on us.</em></h3><p>Free pickup, anywhere in the country.</p></li>
+    <li class="wi r" style="--d:.2s"><span class="wn" aria-hidden="true">03</span><h3>A real <em>person.</em></h3><p>Speak with a real person from the start.</p></li>
+    <li class="wi r" style="--d:.3s"><span class="wn" aria-hidden="true">04</span><h3>Experience that <em>counts.</em></h3><p>An offer backed by <strong>30+ years</strong> in the RV business and a nationwide network.</p></li>
+  </ol>
 </div></section>
 
 <section class="how" id="how"><div class="wrap">
