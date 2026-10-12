@@ -69,7 +69,6 @@ a{color:inherit;text-decoration:none}
 .js .r{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .9s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
 .js .r.in{opacity:1;transform:none}
 .sw{width:min(1280px,100% - 96px);margin-inline:auto}
-.topgap{height:98px;background:var(--hero)}
 .b{display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;border:0;border-radius:999px;font:500 14px/1.25 Inter,system-ui,sans-serif;cursor:pointer;transition:background .2s,color .2s,box-shadow .2s}
 .b svg{width:16px;height:16px;flex-shrink:0}
 .b:disabled{opacity:.6;cursor:wait}
@@ -84,20 +83,20 @@ a{color:inherit;text-decoration:none}
 .tlink:hover{text-decoration:underline;text-underline-offset:4px}
 .bicon{width:48px;height:48px;padding:0;background:transparent;border:1px solid var(--line);color:var(--ink);flex:none}
 .bicon:hover{background:var(--bg2)}
-.hero{background:var(--hero);height:calc(100svh - 148px);min-height:560px;max-height:780px;color:var(--heroink);display:flex;align-items:center;position:relative;overflow:hidden}
+.hero{background:var(--hero);height:calc(100svh - 50px);min-height:640px;max-height:860px;padding-top:98px;color:var(--heroink);display:flex;align-items:center;position:relative;overflow:hidden}
 .hero picture{position:absolute;inset:0}
 .himg{display:block;width:100%;height:100%;object-fit:cover;object-position:center 59%}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,17,14,.5),rgba(20,17,14,.64) 45%,rgba(20,17,14,.48))}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 48% at 50% 54%,rgba(20,17,14,.42),transparent 72%),linear-gradient(180deg,rgba(20,17,14,.5),rgba(20,17,14,.66) 45%,rgba(20,17,14,.52))}
 .hcontent{position:relative;z-index:1;text-align:center;padding-block:35px 65px}
 .pill{display:inline-flex;align-items:center;gap:9px;margin:0;padding:9px 16px;border:1px solid var(--heroacc);border-radius:30px;font-size:10px;font-weight:600;letter-spacing:0;text-transform:uppercase;line-height:1.5}
 .dot{width:6px;height:6px;border-radius:50%;background:var(--heroacc)}
 .hero h1{max-width:900px;margin:26px auto 22px;font-size:82px;font-weight:400;line-height:1.02;letter-spacing:0}
 .hero h1 span{color:var(--heroacc);font-size:64px;font-style:italic}
-.hcopy{max-width:460px;margin:0 auto;color:var(--herom);font-size:14px;line-height:1.85}
+.hcopy{max-width:460px;margin:0 auto;color:rgba(242,235,224,.88);font-size:14px;line-height:1.85;text-shadow:0 1px 14px rgba(20,17,14,.55)}
 .hactions{display:flex;justify-content:center;align-items:center;gap:24px;margin-top:26px}
-.hassure{display:flex;justify-content:center;align-items:center;gap:8px;margin:24px 0 0;color:var(--herom);font-size:10px}
+.hassure{display:flex;justify-content:center;align-items:center;gap:8px;margin:24px 0 0;color:rgba(242,235,224,.82);font-size:10px;text-shadow:0 1px 10px rgba(20,17,14,.6)}
 .hassure svg{width:14px;height:14px;flex-shrink:0}
-.hcap{position:absolute;z-index:2;bottom:30px;right:48px;display:flex;align-items:center;gap:7px;color:var(--herom);font-size:10px}
+.hcap{position:absolute;z-index:2;bottom:30px;right:48px;display:flex;align-items:center;gap:7px;color:rgba(242,235,224,.78);font-size:10px;text-shadow:0 1px 10px rgba(20,17,14,.6)}
 .hcap svg{width:14px;height:14px}
 .tband{position:relative;z-index:2;margin-top:-20px;background:var(--bg);border-bottom:1px solid var(--line);border-radius:24px 24px 0 0}
 .tgrid{display:grid;grid-template-columns:repeat(4,1fr);padding-block:29px}
@@ -163,13 +162,12 @@ a{color:inherit;text-decoration:none}
 .sfoot p,.sfoot span{margin:0}
 .flinks{display:flex;gap:22px}
 .flinks a:hover{color:var(--ink)}
-@media (min-width:1600px){.hero{min-height:620px}}
+@media (min-width:1600px){.hero{min-height:700px}}
 @media (max-width:1050px){.sw{width:calc(100% - 56px)}.hero h1{font-size:74px}.hero h1 span{font-size:56px}.offer{gap:40px}}
 @media (max-width:700px){
 .sw{width:calc(100% - 40px)}
-.topgap{height:86px}
-.hero{height:calc(100svh - 120px);min-height:520px;max-height:740px}
-.himg{object-position:62% center}
+.hero{height:calc(100svh - 50px);min-height:600px;max-height:780px;padding-top:86px}
+.himg{object-position:72% center}
 .hcontent{padding-block:35px 55px}
 .pill{padding:8px 12px;font-size:8px}
 .hero h1{margin-top:24px;font-size:48px}
@@ -228,10 +226,9 @@ a{color:inherit;text-decoration:none}
   </div>
 </div>
 <!--/nav-->
-<div class="topgap" aria-hidden="true"></div>
 <main>
 <header class="hero" id="top">
-  <picture><source srcset="/hero.webp" type="image/webp"><img class="himg" src="/hero.jpg" width="1376" height="768" alt="Luxury motorcoach in the Arizona desert at sunset" fetchpriority="high" decoding="async"></picture>
+  <picture><source srcset="/hero-sunset.webp" type="image/webp"><img class="himg" src="/hero-sunset.jpg" width="1083" height="744" alt="Luxury motorcoach in the Arizona desert at sunset" fetchpriority="high" decoding="async"></picture>
   <div class="sw hcontent r">
     <p class="pill"><span class="dot"></span>GOOD PEOPLE. FAIR OFFERS. NEW BEGINNINGS.</p>
     <h1>Sell your RV.<br><span>Keep your peace of mind.</span></h1>
