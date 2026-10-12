@@ -87,6 +87,12 @@ a{color:inherit;text-decoration:none}
 .himg{display:block;width:100%;height:100%;object-fit:cover;object-position:center 59%}
 .js .hero{position:sticky;top:0;z-index:1}
 .dim{position:absolute;inset:0;background:#0d0b09;opacity:var(--p,0);pointer-events:none}
+.card{position:relative}
+.c1{z-index:1;background:var(--bg)}
+.c2{z-index:2;border-radius:24px 24px 0 0;box-shadow:0 -1px 0 rgba(28,25,21,.08),0 -24px 50px -26px rgba(0,0,0,.35)}
+.c3{z-index:3;background:var(--bg);border-radius:24px 24px 0 0;box-shadow:0 -1px 0 rgba(28,25,21,.08),0 -24px 50px -26px rgba(0,0,0,.35)}
+.js .c1,.js .c2{position:sticky;top:0}
+.cdim{position:absolute;inset:0;border-radius:inherit;background:#0d0b09;opacity:0;pointer-events:none}
 .sheet{position:relative;z-index:2;margin-top:-20px;background:var(--bg);border-radius:24px 24px 0 0;box-shadow:0 -1px 0 rgba(255,255,255,.14),0 -24px 50px -26px rgba(0,0,0,.5)}
 .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 48% at 50% 54%,rgba(20,17,14,.42),transparent 72%),linear-gradient(180deg,rgba(20,17,14,.5),rgba(20,17,14,.66) 45%,rgba(20,17,14,.52))}
 .hcontent{position:relative;z-index:1;text-align:center;padding-block:35px 65px}
@@ -193,7 +199,7 @@ a{color:inherit;text-decoration:none}
 .cinner h2{font-size:38px}
 .sfoot{flex-direction:column;align-items:flex-start;gap:18px;line-height:1.7}
 }
-@media (prefers-reduced-motion:reduce){.js .hero{position:relative}.dim{display:none}*,*::before,*::after{animation:none!important;transition:none!important}.js .r{opacity:1;transform:none}.brands .track{width:auto;flex-wrap:wrap;justify-content:center}.brands .track>*:nth-child(n+13){display:none}.mq{-webkit-mask-image:none;mask-image:none}}
+@media (prefers-reduced-motion:reduce){.js .hero{position:relative}.js .c1,.js .c2{position:relative}.cdim{display:none}.dim{display:none}*,*::before,*::after{animation:none!important;transition:none!important}.js .r{opacity:1;transform:none}.brands .track{width:auto;flex-wrap:wrap;justify-content:center}.brands .track>*:nth-child(n+13){display:none}.mq{-webkit-mask-image:none;mask-image:none}}
 
 @media (max-width:1060px){.nphone{display:none}}
 @media (max-width:980px){#nav{padding-left:.8rem}.nlinks,.nphone,.nbtn{display:none}.hb{display:block}.nlogo img{height:23px}}
@@ -256,6 +262,7 @@ a{color:inherit;text-decoration:none}
   <div class="mq" aria-hidden="true"><div class="track"><span class="mlogo" style="--src:url(/brands/newell.png);--w:188px;--r:10.24"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/prevost.svg);--w:168px;--r:11.76"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newmar.svg);--w:108px;--r:2.5"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/marathon.svg);--w:98px;--r:2.04"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/renegade.png);--w:150px;--r:4.01"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/showhauler.png);--w:96px;--r:2.09"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newell.png);--w:188px;--r:10.24"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/prevost.svg);--w:168px;--r:11.76"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newmar.svg);--w:108px;--r:2.5"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/marathon.svg);--w:98px;--r:2.04"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/renegade.png);--w:150px;--r:4.01"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/showhauler.png);--w:96px;--r:2.09"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newell.png);--w:188px;--r:10.24"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/prevost.svg);--w:168px;--r:11.76"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newmar.svg);--w:108px;--r:2.5"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/marathon.svg);--w:98px;--r:2.04"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/renegade.png);--w:150px;--r:4.01"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/showhauler.png);--w:96px;--r:2.09"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newell.png);--w:188px;--r:10.24"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/prevost.svg);--w:168px;--r:11.76"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/newmar.svg);--w:108px;--r:2.5"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/marathon.svg);--w:98px;--r:2.04"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/renegade.png);--w:150px;--r:4.01"></span><span class="mdot"></span><span class="mlogo" style="--src:url(/brands/showhauler.png);--w:96px;--r:2.09"></span><span class="mdot"></span></div></div>
 </section>
 
+<div class="card c1">
 <section id="offer" class="sw offer">
   <div class="r">
     <p class="label">YOUR NEXT CHAPTER STARTS HERE</p>
@@ -298,16 +305,20 @@ a{color:inherit;text-decoration:none}
     </div>
   </div>
 </section>
+<div class="cdim" aria-hidden="true"></div>
+</div>
 
-<section class="pband" id="how"><div class="sw">
+<section class="pband card c2" id="how"><div class="sw">
   <div class="hrow"><div class="r"><p class="label">A SIMPLER WAY TO SELL</p><h2 class="stitle">Three steps. Zero stress.</h2></div><a class="b tlink" href="#offer">The road to your offer <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></div>
   <div class="sgrid">
     <div class="pstep r"><div class="snum">01</div><h3>Tell us about your RV</h3><p>Share the year, make, model and mileage. Add a photo if you have one. It only takes a few minutes.</p></div>
     <div class="pstep r" style="--d:.1s"><div class="snum">02</div><h3>Get your cash offer</h3><p>A real person will reach out with an offer backed by more than 30 years in the RV business.</p></div>
     <div class="pstep r" style="--d:.2s"><div class="snum">03</div><h3>We handle the rest</h3><p>We take care of the paperwork, coordinate any bank payoff and pick up your coach at no cost to you.</p></div>
   </div>
-</div></section>
+</div><div class="cdim" aria-hidden="true"></div>
+</section>
 
+<div class="card c3">
 <section class="sw whys" id="why">
   <p class="label r">NOT YOUR TYPICAL RV BUYER</p>
   <h2 class="stitle r">Less hassle. More possibility.</h2>
@@ -318,6 +329,7 @@ a{color:inherit;text-decoration:none}
     <div class="ben r" style="--d:.3s"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg><h3>More cash to you.</h3><p>Our experience and nationwide network help us see the real value in your coach.</p></div>
   </div>
 </section>
+</div>
 </div>
 </main>
 
@@ -344,7 +356,12 @@ function onScroll(){ticking=false;
 var line=innerHeight*.45,cur='top';['how','contact'].forEach(function(id){var e=document.getElementById(id);if(e&&e.getBoundingClientRect().top<=line)cur=id});
 if(innerHeight+scrollY>=document.documentElement.scrollHeight-4)cur='contact';
 nl.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+cur)});
-var p=Math.min(1,Math.max(0,scrollY/(hero.offsetHeight*.9)));hero.style.setProperty('--p',(p*.55).toFixed(3))}
+var p=Math.min(1,Math.max(0,scrollY/(hero.offsetHeight*.9)));hero.style.setProperty('--p',(p*.55).toFixed(3));dimCards()}
+var cards=[].slice.call(document.querySelectorAll('.card'));
+function pins(){cards.slice(0,2).forEach(function(c){c.style.top=Math.min(0,document.documentElement.clientHeight-c.offsetHeight)+'px'})}
+function dimCards(){var vh=innerHeight;cards.slice(0,2).forEach(function(c,i){var d=c.querySelector('.cdim'),nx=cards[i+1].getBoundingClientRect().top;d.style.opacity=(Math.min(1,Math.max(0,(vh-nx)/vh))*.4).toFixed(3)})}
+pins();addEventListener('resize',pins);addEventListener('load',pins);
+if(window.ResizeObserver)cards.slice(0,2).forEach(function(c){new ResizeObserver(pins).observe(c)});
 addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});
 addEventListener('resize',onScroll);onScroll();
 var f=document.getElementById('f'),p1=document.getElementById('p1'),p2=document.getElementById('p2'),nx=document.getElementById('nx'),bk=document.getElementById('bk'),err=document.getElementById('err'),step=0,sending=false;
